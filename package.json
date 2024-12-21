@@ -1,0 +1,15 @@
+{
+    "name": "my-website",
+    "version": "1.0.0",
+    "description": "A simple website with a backend server, hosted on Render.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "^4.18.2"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
