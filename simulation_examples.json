@@ -1,0 +1,122 @@
+[
+    {
+        "id": 1,
+        "prompt": "HELP! The building's on fire, my babies are inside the room but it's locked!"
+    },
+    {
+        "id": 2,
+        "prompt": "There's someone in my house. I can hear footsteps downstairs, and I’m hiding in the closet!"
+    },
+    {
+        "id": 3,
+        "prompt": "I've been in a car accident. My chest hurts, and I can’t feel my legs. Please send help!"
+    },
+    {
+        "id": 4,
+        "prompt": "I’m having a heart attack! My chest feels like it’s being crushed, and I’m sweating heavily!"
+    },
+    {
+        "id": 5,
+        "prompt": "There’s a man with a gun in the park! He’s pointing it at people and shouting!"
+    },
+    {
+        "id": 6,
+        "prompt": "My neighbor is screaming for help. I think they’re being attacked!"
+    },
+    {
+        "id": 7,
+        "prompt": "I can smell gas in my house, and I feel lightheaded! I’m scared it might explode!"
+    },
+    {
+        "id": 8,
+        "prompt": "My child has stopped breathing! They’re not moving, and I don’t know what to do!"
+    },
+    {
+        "id": 9,
+        "prompt": "I think my friend overdosed. They’re unconscious and not responding!"
+    },
+    {
+        "id": 10,
+        "prompt": "There’s a car speeding through the neighborhood, almost hitting pedestrians!"
+    },
+    {
+        "id": 11,
+        "prompt": "I was just mugged at gunpoint! The person ran away down Main Street!"
+    },
+    {
+        "id": 12,
+        "prompt": "A huge tree fell on my house, and I’m trapped inside! I can’t get out!"
+    },
+    {
+        "id": 13,
+        "prompt": "My elderly mother has fallen and can’t get up. She’s in a lot of pain!"
+    },
+    {
+        "id": 14,
+        "prompt": "I’m trapped in an elevator, and the doors won’t open. I think I’m stuck between floors!"
+    },
+    {
+        "id": 15,
+        "prompt": "Someone is breaking into cars in the parking lot! I can see them smashing windows!"
+    },
+    {
+        "id": 16,
+        "prompt": "There’s been a chemical spill at the factory! People are coughing and fainting!"
+    },
+    {
+        "id": 17,
+        "prompt": "A child is lost in the shopping mall. They’re crying and can’t find their parents!"
+    },
+    {
+        "id": 18,
+        "prompt": "There’s a motorcycle accident on Highway 24. The rider is lying on the road, not moving!"
+    },
+    {
+        "id": 19,
+        "prompt": "A man is standing on the bridge, threatening to jump! He looks very distressed!"
+    },
+    {
+        "id": 20,
+        "prompt": "My basement is flooding, and the water is rising fast. I’m afraid it will short out the electricity!"
+    },
+    {
+        "id": 21,
+        "prompt": "I saw a hit-and-run accident. The car drove off, and the victim is lying on the ground!"
+    },
+    {
+        "id": 22,
+        "prompt": "I’m lost in the woods, and it’s getting dark. My phone is running out of battery!"
+    },
+    {
+        "id": 23,
+        "prompt": "A tornado just hit my neighborhood! Houses are destroyed, and people are trapped!"
+    },
+    {
+        "id": 24,
+        "prompt": "There’s a domestic fight happening next door. I can hear things breaking and people shouting!"
+    },
+    {
+        "id": 25,
+        "prompt": "A biker just got hit by a truck on the highway. They’re bleeding and unconscious!"
+    },
+    {
+        "id": 26,
+        "prompt": "There’s a fire in the forest nearby, and it’s spreading quickly toward the houses!"
+    },
+    {
+        "id": 27,
+        "prompt": "A person collapsed in the gym while exercising. They’re not breathing and have no pulse!"
+    },
+    {
+        "id": 28,
+        "prompt": "My car broke down on the highway, and there are no lights or emergency lanes. I’m scared!"
+    },
+    {
+        "id": 29,
+        "prompt": "There’s a riot breaking out downtown. People are fighting, and things are being destroyed!"
+    },
+    {
+        "id": 30,
+        "prompt": "I think someone is stalking me. They’ve been following me for the past three blocks!"
+    }
+]
