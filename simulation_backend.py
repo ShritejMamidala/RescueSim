@@ -15,12 +15,6 @@ Workflow:
 4. Text-to-Speech Conversion:
    - The GPT-generated prompt is sent to Google Cloud TTS to generate audio output (AI voice).
 
-   
-
-
-   
-
-
 5. AI Voice Playback:
    - The generated audio (AI voice) is played back to the dispatcher.
 
@@ -100,8 +94,12 @@ def generate_initial_prompt(conversation_log):
 
 # Step 4: Text-to-Speech Conversion
 def generate_audio_from_text(text):
-    # Use the new service account key file
-    service_account_key_path = "C:/Users/shrit/Desktop/Ml_Projects/911_Dispatch/911-dispatch/kinetic-song-445422-d9-432bb8515a50.json"
+    # Use environment variable for the service account key file
+    service_account_key_path = os.getenv("GOOGLE_CLOUD_TTS")
+
+    if not service_account_key_path:
+        print("Error: GOOGLE_CLOUD_TTS environment variable is not set.")
+        exit(1)
 
     # Initialize the Text-to-Speech client using the service account key file
     client = texttospeech.TextToSpeechClient.from_service_account_file(service_account_key_path)
