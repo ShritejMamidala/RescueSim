@@ -32,11 +32,15 @@ Workflow:
    - After the simulation ends, GPT analyzes the entire conversation log and provides detailed, harsh feedback to the dispatcher based on evidence-based protocols.
 """
 
+""
+
 import openai
 import os
 import json
 import random
 from google.cloud import texttospeech
+from google.cloud import speech
+import wave
 
 # Set the API key from the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -116,7 +120,8 @@ def generate_audio_from_text(text):
 
     # Select the type of audio file you want returned
     audio_config = texttospeech.AudioConfig(
-        audio_encoding=texttospeech.AudioEncoding.MP3
+        audio_encoding=texttospeech.AudioEncoding.MP3,
+        speaking_rate=1.2  # Set speaking rate to 1.2 for faster speech
     )
 
     # Perform the text-to-speech request
@@ -134,9 +139,99 @@ def generate_audio_from_text(text):
 
     return audio_file_path
 
+# Step 6: Speech-to-Text Conversion
+def transcribe_audio_to_text(audio_file_path):
+    print(f"Transcribing audio file: {audio_file_path}")
+    service_account_key_path = os.getenv("GOOGLE_CLOUD_STT")
+
+    if not service_account_key_path:
+        print("Error: GOOGLE_CLOUD_STT environment variable is not set.")
+        exit(1)
+
+    client = speech.SpeechClient.from_service_account_file(service_account_key_path)
+
+    # Read audio file
+    with open(audio_file_path, "rb") as audio_file:
+        content = audio_file.read()
+
+    audio = speech.RecognitionAudio(content=content)
+
+    config = speech.RecognitionConfig(
+        encoding=speech.RecognitionConfig.AudioEncoding.MP3,
+        sample_rate_hertz=48000,  # Match the audio file's sample rate
+        language_code="en-US"
+)
+
+    # Perform the speech-to-text request
+    response = client.recognize(config=config, audio=audio)
+
+    transcript = " ".join(result.alternatives[0].transcript for result in response.results)
+    print(f"Transcription: {transcript}")
+    return transcript
+
+
+# Step 7: Log the Interaction
+def log_interaction(conversation_log, dispatcher_response):
+    print("Logging interaction...")
+    conversation_log[-1]["dispatcher"] = dispatcher_response
+    print(f"Updated Conversation Log: {conversation_log}")
+
+# Step 8: Repeat the Cycle
+def generate_next_prompt(conversation_log):
+    print("Generating next prompt...")
+    updated_prompt = (
+        "Based on the dispatcher’s response, continue the simulation. Update the caller’s information accordingly:\n" +
+        f"Conversation Log: {conversation_log}"
+    )
+
+    # GPT API call
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[
+            {"role": "system", "content": "You are a 911 caller in a simulated emergency training, you are the victim"},
+            {"role": "user", "content": updated_prompt}
+        ]
+    )
+
+    # Extract GPT's response
+    next_prompt = response["choices"][0]["message"]["content"]
+    print(f"Next GPT Prompt: {next_prompt}")
+    return next_prompt
+
 # Example Usage
 if __name__ == "__main__":
-    conversation_log, audio_file_path = on_button_click()
-    print("Conversation Log:")
-    print(conversation_log)
-    print(f"Generated audio file at: {audio_file_path}")
+    # Initialize the simulation
+    conversation_log, _ = on_button_click()  # Start simulation with initial scenario
+
+    # Simulate multiple turns (3 for this example)
+    for turn in range(3):
+        print(f"\n=== Turn {turn + 1} ===")
+
+        # Path to the dispatcher audio file (replace with actual file for dispatcher response)
+        audio_file_path = r"C:\Users\shrit\Desktop\Ml_Projects\911_Dispatch\Record (online-voice-recorder.com) (1).mp3"
+
+        # Perform Speech-to-Text on the dispatcher's audio
+        dispatcher_response = transcribe_audio_to_text(audio_file_path)
+
+        # Check if transcription was empty
+        if dispatcher_response.strip() == "":
+            print("No transcription returned for the dispatcher response. Skipping this turn.")
+            continue
+
+        # Log the interaction (caller and dispatcher)
+        log_interaction(conversation_log, dispatcher_response)
+
+        # Generate the next GPT prompt based on the updated conversation log
+        next_prompt = generate_next_prompt(conversation_log)
+
+        # Append the next GPT prompt to the conversation log for the caller
+        conversation_log.append({"caller": next_prompt, "dispatcher": ""})
+
+        # Generate a new TTS file for the latest GPT prompt
+        audio_file_for_turn = f"TTS_output_turn_{turn + 1}.mp3"
+        audio_file_path = generate_audio_from_text(next_prompt)
+        print(f"Audio generated for Turn {turn + 1}: {audio_file_for_turn}")
+
+        # Display the full conversation log
+        print("\n=== Full Conversation Log ===")
+        print(json.dumps(conversation_log, indent=4))
