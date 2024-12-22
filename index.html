@@ -19,10 +19,10 @@
         <button class="start-button">Start Simulation</button>
     </div>
 
-    <!-- Main Container -->
-    <div class="main-container hidden">
+    <!-- Main Chat Window (used for both modes) -->
+    <div class="main-container hidden" id="main-chat-window">
         <header>
-            <h1>9-1-1 Assistant</h1>
+            <h1 id="mode-title">Text to Text Mode</h1>
         </header>
         <div class="content">
             <div class="left-panel">
@@ -30,7 +30,10 @@
                     <!-- Chat window is now empty -->
                 </div>
                 <div class="input-container">
-                    <input type="text" placeholder="Message 9-1-1 Assistant">
+                    <input type="text" placeholder="Message 9-1-1 Assistant" id="chat-input">
+                    <button id="record-button" class="hidden">Record Audio</button>
+                    <button id="play-audio-button" class="hidden">Play Audio</button>
+                    <button id="listen-to-caller-button" class="hidden">Listen to Caller</button>
                 </div>
             </div>
             <div class="right-panel">
@@ -48,6 +51,7 @@
             Prompt Counter 15/15
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>

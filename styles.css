@@ -38,38 +38,38 @@ body, html {
 .toggle-button {
     padding: 15px 30px;
     font-size: 1.2rem;
-    font-family: 'Orbitron', sans-serif; /* Button text font */
+    font-family: 'Orbitron', sans-serif;
     border: none;
     border-radius: 5px;
-    background-color: #0F1A2D; /* Navy blue */
-    color: #00FFFF; /* Neon blue text */
+    background-color: #0F1A2D;
+    color: #00FFFF;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .toggle-button.active {
-    background-color: #0A0D18; /* Darker navy blue when active */
-    color: #1C75BC; /* Lighter neon blue when active */
+    background-color: #0A0D18;
+    color: #1C75BC;
 }
 
 .toggle-button:hover {
-    background-color: #1C2A3C; /* Slightly lighter navy blue on hover */
+    background-color: #1C2A3C;
 }
 
 .start-button {
     padding: 15px 30px;
     font-size: 1.2rem;
-    font-family: 'Orbitron', sans-serif; /* Button text font */
+    font-family: 'Orbitron', sans-serif;
     border: none;
     border-radius: 5px;
-    background-color: #0F1A2D; /* Navy blue */
-    color: #00FFFF; /* Neon blue text */
+    background-color: #0F1A2D;
+    color: #00FFFF;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .start-button:hover {
-    background-color: #1C2A3C; /* Slightly lighter navy blue on hover */
+    background-color: #1C2A3C;
 }
 
 /* Main Container */
@@ -78,6 +78,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    height: 100vh;
 }
 
 header {
@@ -87,28 +88,27 @@ header {
 
 header h1 {
     font-size: 3rem;
-    color: #8CD6FF; /* Lighter blue */
-    border-bottom: 2px solid #1C75BC; /* Cyber blue */
+    color: #8CD6FF;
+    border-bottom: 2px solid #1C75BC;
     padding-bottom: 10px;
 }
 
 /* Content Layout */
 .content {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
     max-width: 1200px;
-    gap: 20px;
+    height: 100%;
 }
 
 /* Left Panel */
 .left-panel {
     flex: 2;
-    background-color: #131B33; /* Darker blue */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     gap: 20px;
 }
 
@@ -116,39 +116,51 @@ header h1 {
     flex-grow: 1;
     overflow-y: auto;
     padding: 10px;
-    background-color: #0F1A2D; /* Even darker blue */
-    border: 1px solid #1C75BC; /* Cyber blue */
+    background-color: #0F1A2D;
+    border: 1px solid #1C75BC;
     border-radius: 10px;
-    max-height: 400px;
 }
 
 .input-container {
     display: flex;
-    justify-content: space-between;
-    border-top: 1px solid #1C75BC; /* Cyber blue */
+    gap: 10px;
+    border-top: 1px solid #1C75BC;
     padding-top: 10px;
 }
 
-.input-container input {
-    width: 100%;
+.input-container input[type="text"] {
+    flex: 1;
     padding: 10px;
-    border: 1px solid #1C75BC; /* Cyber blue */
+    border: 1px solid #1C75BC;
     border-radius: 5px;
-    background-color: #0F1A2D; /* Even darker blue */
-    color: #8CD6FF; /* Lighter blue */
+    background-color: #0F1A2D;
+    color: #8CD6FF;
+}
+
+.input-container button {
+    padding: 15px 30px;
+    background-color: #1C75BC;
+    color: #FFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-container button.hidden {
+    display: none;
 }
 
 /* Right Panel */
 .right-panel {
     flex: 1;
-    background-color: #131B33; /* Darker blue */
+    background-color: #131B33;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
 }
 
 .right-panel h2 {
-    color: #8CD6FF; /* Lighter blue */
+    color: #8CD6FF;
     margin-bottom: 20px;
 }
 
@@ -167,27 +179,14 @@ header h1 {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #FF0000; /* Red for End Simulation */
-    color: #FFF; /* White text */
+    background-color: #FF0000;
+    color: #FFF;
     font-weight: bold;
     cursor: pointer;
 }
 
 .clear-history:hover {
-    background-color: #FF4D4D; /* Lighter red on hover */
-}
-
-/* Prompt Counter */
-.prompt-counter {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    background-color: #131B33; /* Darker blue */
-    color: #8CD6FF; /* Lighter blue */
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 1rem;
-    box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
+    background-color: #FF4D4D;
 }
 
 /* Hidden Class */
