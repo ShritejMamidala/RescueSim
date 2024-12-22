@@ -10,6 +10,68 @@ body, html {
     height: 100%;
 }
 
+/* Selection Screen */
+.selection-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #131B33; /* Darker blue */
+    color: #8CD6FF; /* Neon blue */
+    gap: 20px;
+}
+
+.selection-screen h1 {
+    font-size: 2.5rem;
+    border-bottom: 2px solid #1C75BC; /* Cyber blue */
+    padding-bottom: 10px;
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.toggle-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif; /* Button text font */
+    border: none;
+    border-radius: 5px;
+    background-color: #0F1A2D; /* Navy blue */
+    color: #00FFFF; /* Neon blue text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.toggle-button.active {
+    background-color: #0A0D18; /* Darker navy blue when active */
+    color: #1C75BC; /* Lighter neon blue when active */
+}
+
+.toggle-button:hover {
+    background-color: #1C2A3C; /* Slightly lighter navy blue on hover */
+}
+
+.start-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', sans-serif; /* Button text font */
+    border: none;
+    border-radius: 5px;
+    background-color: #0F1A2D; /* Navy blue */
+    color: #00FFFF; /* Neon blue text */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.start-button:hover {
+    background-color: #1C2A3C; /* Slightly lighter navy blue on hover */
+}
+
 /* Main Container */
 .main-container {
     display: flex;
@@ -113,4 +175,22 @@ header h1 {
 
 .clear-history:hover {
     background-color: #FF4D4D; /* Lighter red on hover */
+}
+
+/* Prompt Counter */
+.prompt-counter {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #131B33; /* Darker blue */
+    color: #8CD6FF; /* Lighter blue */
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
+}
+
+/* Hidden Class */
+.hidden {
+    display: none;
 }

@@ -7,7 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="main-container">
+    <!-- Unified Selection Screen -->
+    <div class="selection-screen">
+        <h1>Welcome to 9-1-1 Assistant</h1>
+        <div class="button-group">
+            <button class="toggle-button simulation-button" data-group="simulation">Simulation</button>
+            <button class="toggle-button feedback-button" data-group="simulation">Feedback</button>
+            <button class="toggle-button text-to-text-button" data-group="mode">Text to Text</button>
+            <button class="toggle-button speech-to-speech-button" data-group="mode">Speech to Speech</button>
+        </div>
+        <button class="start-button">Start Simulation</button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="main-container hidden">
         <header>
             <h1>9-1-1 Assistant</h1>
         </header>
@@ -21,15 +34,18 @@
                 </div>
             </div>
             <div class="right-panel">
-                <h2> Information</h2>
+                <h2>Information</h2>
                 <ul>
                     <li><strong>Location:</strong> </li>
                     <li><strong>Description / Status:</strong> </li>
                     <li><strong>Type of Service:</strong> </li>
                     <li><strong>Situation Details:</strong> </li>
                 </ul>
-                <button class="clear-history">END SIMULATION</button>
+                <button class="clear-history">End Simulation</button>
             </div>
+        </div>
+        <div class="prompt-counter hidden">
+            Prompt Counter 15/15
         </div>
     </div>
     <script src="script.js"></script>
