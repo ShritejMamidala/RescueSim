@@ -32,15 +32,12 @@ Workflow:
    - After the simulation ends, GPT analyzes the entire conversation log and provides detailed, harsh feedback to the dispatcher based on evidence-based protocols.
 """
 
-""
-
 import openai
 import os
 import json
 import random
 from google.cloud import texttospeech
 from google.cloud import speech
-import wave
 
 # Set the API key from the environment variable
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -48,6 +45,18 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 if openai.api_key is None:
     print("Error: OPENAI_API_KEY environment variable is not set.")
     exit(1)
+
+# Function to sanitize and clean text
+import html
+
+def clean_text(input_text):
+    replacements = {
+        "\u00e2\u20ac\u2122": "'",
+        "â€™": "'",
+    }
+    for key, value in replacements.items():
+        input_text = input_text.replace(key, value)
+    return html.unescape(input_text)
 
 # Step 1: Button Click Initialization
 # This would normally be handled by your frontend. For now, simulate the click event:
@@ -62,12 +71,12 @@ def on_button_click():
 # Step 2: Conversation Log Creation
 def initialize_conversation_log():
     # Load predefined scenarios from simulation_examples.json
-    with open("911-dispatch/simulation_examples.json", "r") as file:
+    with open("911-dispatch/simulation_examples.json", "r", encoding="utf-8") as file:
         predefined_scenarios = json.load(file)
 
     # Pick a random scenario
     selected_scenario = random.choice(predefined_scenarios)
-    initial_scenario = selected_scenario["prompt"]
+    initial_scenario = clean_text(selected_scenario["prompt"])
     print(f"Selected Scenario: {initial_scenario}")
 
     # Initialize the log with the initial scenario
@@ -84,15 +93,15 @@ def generate_initial_prompt(conversation_log):
 
     # GPT API call
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a 911 caller in a simulated emergency training."},
             {"role": "user", "content": prompt}
         ]
     )
 
-    # Extract GPT's response
-    gpt_response = response["choices"][0]["message"]["content"]
+    # Extract and sanitize GPT's response
+    gpt_response = clean_text(response["choices"][0]["message"]["content"])
     print(f"GPT Response: {gpt_response}")
     return gpt_response
 
@@ -121,8 +130,8 @@ def generate_audio_from_text(text):
     # Select the type of audio file you want returned
     audio_config = texttospeech.AudioConfig(
         audio_encoding=texttospeech.AudioEncoding.MP3,
-        speaking_rate=1.2  # Set speaking rate to 1.2 for faster speech
-    )
+        speaking_rate=1.25
+        )
 
     # Perform the text-to-speech request
     response = client.synthesize_speech(
@@ -160,12 +169,13 @@ def transcribe_audio_to_text(audio_file_path):
         encoding=speech.RecognitionConfig.AudioEncoding.MP3,
         sample_rate_hertz=48000,  # Match the audio file's sample rate
         language_code="en-US"
-)
+    )
 
     # Perform the speech-to-text request
     response = client.recognize(config=config, audio=audio)
 
     transcript = " ".join(result.alternatives[0].transcript for result in response.results)
+    transcript = clean_text(transcript)
     print(f"Transcription: {transcript}")
     return transcript
 
@@ -180,21 +190,21 @@ def log_interaction(conversation_log, dispatcher_response):
 def generate_next_prompt(conversation_log):
     print("Generating next prompt...")
     updated_prompt = (
-        "Based on the dispatcher’s response, continue the simulation. Update the caller’s information accordingly:\n" +
-        f"Conversation Log: {conversation_log}"
+        "Based on the dispatcher’s response, continue the simulation. Only give more information if asked. Do not provide information you were not asked for. Escalate the situation slightly every time.:\n" +
+        f"Conversation Log: {json.dumps(conversation_log)}"
     )
 
     # GPT API call
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
-            {"role": "system", "content": "You are a 911 caller in a simulated emergency training, you are the victim"},
+            {"role": "system", "content": "You are a 911 caller in a simulated emergency training, you are the victim."},
             {"role": "user", "content": updated_prompt}
         ]
     )
 
-    # Extract GPT's response
-    next_prompt = response["choices"][0]["message"]["content"]
+    # Extract and sanitize GPT's response
+    next_prompt = clean_text(response["choices"][0]["message"]["content"])
     print(f"Next GPT Prompt: {next_prompt}")
     return next_prompt
 
@@ -208,7 +218,7 @@ if __name__ == "__main__":
         print(f"\n=== Turn {turn + 1} ===")
 
         # Path to the dispatcher audio file (replace with actual file for dispatcher response)
-        audio_file_path = r"C:\Users\shrit\Desktop\Ml_Projects\911_Dispatch\Record (online-voice-recorder.com) (1).mp3"
+        audio_file_path = r"C:\\Users\\shrit\\Desktop\\Ml_Projects\\911_Dispatch\\Record (online-voice-recorder.com) (1).mp3"
 
         # Perform Speech-to-Text on the dispatcher's audio
         dispatcher_response = transcribe_audio_to_text(audio_file_path)
