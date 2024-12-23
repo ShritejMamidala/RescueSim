@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let mediaRecorder = null;
     let audioChunks = [];
+    let isRecording = false; // Tracks recording state
 
     // End Simulation Button
     if (endSimulationButton) {
@@ -95,6 +96,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 } catch (error) {
                     console.error("Error uploading audio:", error);
                 }
+
+                // Toggle buttons after recording ends
+                recordAudioButton.classList.add("hidden");
+                listenToCallerButton.classList.remove("hidden");
             };
 
             mediaRecorder.start();
@@ -125,8 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Record Audio Button Logic
     if (recordAudioButton) {
-        let isRecording = false;
-
         recordAudioButton.addEventListener("click", () => {
             if (!isRecording) {
                 startRecording();
@@ -139,10 +142,34 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Speech-to-Speech Button Logic
+    // Speech-to-Speech Button Logic: Listen to Caller
     if (listenToCallerButton) {
-        listenToCallerButton.addEventListener("click", () => {
-            console.log("Listening to caller...");
+        listenToCallerButton.addEventListener("click", async () => {
+            // Hide "Listen to Caller" and show "Record Audio"
+            listenToCallerButton.classList.add("hidden");
+            recordAudioButton.classList.remove("hidden");
+
+            try {
+                // Fetch GPT response and audio from the backend
+                const { text, audio_url } = await API.listenToCaller();
+
+                // Append the GPT response to the main textbox
+                if (mainTextbox) {
+                    mainTextbox.value += `\n\nVictim: ${text}`; // Add victim response with spacing
+                    mainTextbox.scrollTop = mainTextbox.scrollHeight; // Auto-scroll to latest entry
+                }
+
+                // Play the audio file
+                const audio = new Audio(audio_url);
+                audio.play();
+            } catch (error) {
+                console.error("Error handling 'Listen to Caller':", error);
+                alert("Failed to retrieve the victim's response. Please try again.");
+
+                // Revert button visibility on error
+                listenToCallerButton.classList.remove("hidden");
+                recordAudioButton.classList.add("hidden");
+            }
         });
     }
 
@@ -150,7 +177,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mainTextbox) {
         populateMainTextbox();
     }
-
-
-    
 });

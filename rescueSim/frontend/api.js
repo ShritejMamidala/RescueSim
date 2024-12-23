@@ -60,7 +60,23 @@ const API = {
             console.error("Error in uploadAudio API call:", error);
             throw error;
         }
-    }
+    },
+    /**
+     * Fetch the victim's response and audio from the backend.
+     * @returns {Promise<{text: string, audio_url: string}>} - GPT response text and audio URL.
+     */
+    async listenToCaller() {
+        try {
+            const response = await fetch("/listen-to-caller", { method: "POST" });
+            if (!response.ok) {
+                throw new Error(`API error: ${response.statusText}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error("Error in listenToCaller API call:", error);
+            throw error;
+        }
+    },
 };
 
 export default API;
