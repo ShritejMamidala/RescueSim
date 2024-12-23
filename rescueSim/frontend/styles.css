@@ -320,3 +320,24 @@ body, html {
     border-radius: 8px;
     width: fit-content; /* Adjust width to content */
 }
+/* Feedback Button */
+.feedback-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #1C75BC; /* Blue like the Record Audio button */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.feedback-button:hover {
+    background-color: #255FA3; /* Slightly darker blue on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
