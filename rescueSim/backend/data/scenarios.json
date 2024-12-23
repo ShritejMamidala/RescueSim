@@ -1,122 +1,322 @@
 [
     {
         "id": 1,
-        "prompt": "HELP! The building's on fire, my babies are inside the room but it's locked!"
+        "prompt": "HELP! The building is on fire, my babies are inside the room but it is locked!"
     },
     {
         "id": 2,
-        "prompt": "There's someone in my house. I can hear footsteps downstairs, and I’m hiding in the closet!"
+        "prompt": "There is someone in my house. I can hear footsteps downstairs, and I am hiding in the closet!"
     },
     {
         "id": 3,
-        "prompt": "I've been in a car accident. My chest hurts, and I can’t feel my legs. Please send help!"
+        "prompt": "I have been in a car accident. My chest hurts, and I cannot feel my legs. Please send help!"
     },
     {
         "id": 4,
-        "prompt": "I’m having a heart attack! My chest feels like it’s being crushed, and I’m sweating heavily!"
+        "prompt": "I am having a heart attack! My chest feels like it is being crushed, and I am sweating heavily!"
     },
     {
         "id": 5,
-        "prompt": "There’s a man with a gun in the park! He’s pointing it at people and shouting!"
+        "prompt": "There is a man with a gun in the park! He is pointing it at people and shouting!"
     },
     {
         "id": 6,
-        "prompt": "My neighbor is screaming for help. I think they’re being attacked!"
+        "prompt": "My neighbor is screaming for help. I think they are being attacked!"
     },
     {
         "id": 7,
-        "prompt": "I can smell gas in my house, and I feel lightheaded! I’m scared it might explode!"
+        "prompt": "I can smell gas in my house, and I feel lightheaded! I am scared it might explode!"
     },
     {
         "id": 8,
-        "prompt": "My child has stopped breathing! They’re not moving, and I don’t know what to do!"
+        "prompt": "My child is not breathing! I do not know what to do!"
     },
     {
         "id": 9,
-        "prompt": "I think my friend overdosed. They’re unconscious and not responding!"
+        "prompt": "There is a fire in my kitchen! I cannot put it out!"
     },
     {
         "id": 10,
-        "prompt": "There’s a car speeding through the neighborhood, almost hitting pedestrians!"
+        "prompt": "I am trapped in an elevator, and I am claustrophobic! Please help me!"
     },
     {
         "id": 11,
-        "prompt": "I was just mugged at gunpoint! The person ran away down Main Street!"
+        "prompt": "I have fallen down the stairs, and I cannot move my leg!"
     },
     {
         "id": 12,
-        "prompt": "A huge tree fell on my house, and I’m trapped inside! I can’t get out!"
+        "prompt": "There is a strange man following me, and I am scared!"
     },
     {
         "id": 13,
-        "prompt": "My elderly mother has fallen and can’t get up. She’s in a lot of pain!"
+        "prompt": "I think I am having a stroke! My face is drooping, and I cannot lift my arm!"
     },
     {
         "id": 14,
-        "prompt": "I’m trapped in an elevator, and the doors won’t open. I think I’m stuck between floors!"
+        "prompt": "There is a car accident outside my house, and people are injured!"
     },
     {
         "id": 15,
-        "prompt": "Someone is breaking into cars in the parking lot! I can see them smashing windows!"
+        "prompt": "I am locked out of my house, and my baby is inside!"
     },
     {
         "id": 16,
-        "prompt": "There’s been a chemical spill at the factory! People are coughing and fainting!"
+        "prompt": "I can hear gunshots in my neighborhood! I am scared!"
     },
     {
         "id": 17,
-        "prompt": "A child is lost in the shopping mall. They’re crying and can’t find their parents!"
+        "prompt": "There is a large snake in my yard, and I do not know if it is poisonous!"
     },
     {
         "id": 18,
-        "prompt": "There’s a motorcycle accident on Highway 24. The rider is lying on the road, not moving!"
+        "prompt": "I am lost in the woods, and it is getting dark!"
     },
     {
         "id": 19,
-        "prompt": "A man is standing on the bridge, threatening to jump! He looks very distressed!"
+        "prompt": "My boat is sinking, and I cannot swim!"
     },
     {
         "id": 20,
-        "prompt": "My basement is flooding, and the water is rising fast. I’m afraid it will short out the electricity!"
+        "prompt": "I have been bitten by a dog, and it is bleeding heavily!"
     },
     {
         "id": 21,
-        "prompt": "I saw a hit-and-run accident. The car drove off, and the victim is lying on the ground!"
+        "prompt": "There is a tornado coming, and I do not have a safe place to go!"
     },
     {
         "id": 22,
-        "prompt": "I’m lost in the woods, and it’s getting dark. My phone is running out of battery!"
+        "prompt": "I am stuck on the roof, and I cannot get down!"
     },
     {
         "id": 23,
-        "prompt": "A tornado just hit my neighborhood! Houses are destroyed, and people are trapped!"
+        "prompt": "My car has broken down in the middle of nowhere, and I do not have cell service!"
     },
     {
         "id": 24,
-        "prompt": "There’s a domestic fight happening next door. I can hear things breaking and people shouting!"
+        "prompt": "I am having a severe allergic reaction, and I do not have my EpiPen!"
     },
     {
         "id": 25,
-        "prompt": "A biker just got hit by a truck on the highway. They’re bleeding and unconscious!"
+        "prompt": "There is a bear in my backyard, and I am afraid it will attack!"
     },
     {
         "id": 26,
-        "prompt": "There’s a fire in the forest nearby, and it’s spreading quickly toward the houses!"
+        "prompt": "I am trapped in my car during a flood, and the water is rising!"
     },
     {
         "id": 27,
-        "prompt": "A person collapsed in the gym while exercising. They’re not breathing and have no pulse!"
+        "prompt": "I have been stung by a bee, and I am allergic!"
     },
     {
         "id": 28,
-        "prompt": "My car broke down on the highway, and there are no lights or emergency lanes. I’m scared!"
+        "prompt": "There is a fire in my apartment building, and I cannot find the exit!"
     },
     {
         "id": 29,
-        "prompt": "There’s a riot breaking out downtown. People are fighting, and things are being destroyed!"
+        "prompt": "I am witnessing a robbery at the store, and the thief has a weapon!"
     },
     {
         "id": 30,
-        "prompt": "I think someone is stalking me. They’ve been following me for the past three blocks!"
+        "prompt": "I am stuck in a snowstorm, and my car will not start!"
+    },
+    {
+        "id": 31,
+        "prompt": "I am trapped in a cave, and my flashlight is dying!"
+    },
+    {
+        "id": 32,
+        "prompt": "There is a chemical spill in my lab, and I am feeling dizzy!"
+    },
+    {
+        "id": 33,
+        "prompt": "I am stuck in an elevator with a stranger who is acting aggressively!"
+    },
+    {
+        "id": 34,
+        "prompt": "My child has swallowed a small toy, and they are choking!"
+    },
+    {
+        "id": 35,
+        "prompt": "I am in a car accident, and my friend is unconscious!"
+    },
+    {
+        "id": 36,
+        "prompt": "There is a gas leak in my apartment, and I cannot find the source!"
+    },
+    {
+        "id": 37,
+        "prompt": "I am lost in a foreign city, and I do not speak the language!"
+    },
+    {
+        "id": 38,
+        "prompt": "My house is flooding, and I cannot stop the water!"
+    },
+    {
+        "id": 39,
+        "prompt": "I am trapped in a burning car, and I cannot open the door!"
+    },
+    {
+        "id": 40,
+        "prompt": "There is a power outage, and I am stuck on the 20th floor!"
+    },
+    {
+        "id": 41,
+        "prompt": "I am being followed by a group of people, and I am scared!"
+    },
+    {
+        "id": 42,
+        "prompt": "My child is missing, and I cannot find them anywhere!"
+    },
+    {
+        "id": 43,
+        "prompt": "I am in a boat, and a storm is approaching!"
+    },
+    {
+        "id": 44,
+        "prompt": "There is a fire in the forest, and I am trapped!"
+    },
+    {
+        "id": 45,
+        "prompt": "I am stuck in a blizzard, and I cannot see anything!"
+    },
+    {
+        "id": 46,
+        "prompt": "My friend has collapsed, and they are not breathing!"
+    },
+    {
+        "id": 47,
+        "prompt": "I am in a car accident, and my leg is trapped!"
+    },
+    {
+        "id": 48,
+        "prompt": "There is a gas explosion in my building, and I am injured!"
+    },
+    {
+        "id": 49,
+        "prompt": "I am stuck in a mine, and the air is running out!"
+    },
+    {
+        "id": 50,
+        "prompt": "My child is having a seizure, and I do not know what to do!"
+    },
+    {
+        "id": 51,
+        "prompt": "I am in a car accident, and my car is on fire!"
+    },
+    {
+        "id": 52,
+        "prompt": "There is a landslide, and my house is buried!"
+    },
+    {
+        "id": 53,
+        "prompt": "I am stuck in a tree, and I cannot get down!"
+    },
+    {
+        "id": 54,
+        "prompt": "My friend is drowning, and I cannot swim!"
+    },
+    {
+        "id": 55,
+        "prompt": "There is a gas leak in my house, and I am feeling sick!"
+    },
+    {
+        "id": 56,
+        "prompt": "I am trapped in a building, and the roof is collapsing!"
+    },
+    {
+        "id": 57,
+        "prompt": "My child is lost in a crowded place, and I cannot find them!"
+    },
+    {
+        "id": 58,
+        "prompt": "There is a fire in my office, and I cannot find the exit!"
+    },
+    {
+        "id": 59,
+        "prompt": "I am stuck in a car during a hailstorm, and the windows are breaking!"
+    },
+    {
+        "id": 60,
+        "prompt": "My friend is having a panic attack, and I do not know how to help!"
+    },
+    {
+        "id": 61,
+        "prompt": "I am in a car accident, and my phone is dead!"
+    },
+    {
+        "id": 62,
+        "prompt": "There is a fire in my hotel, and I cannot find the stairs!"
+    },
+    {
+        "id": 63,
+        "prompt": "I am stuck in a subway, and it is filling with smoke!"
+    },
+    {
+        "id": 64,
+        "prompt": "My child is locked in the bathroom, and I cannot open the door!"
+    },
+    {
+        "id": 65,
+        "prompt": "There is a gas leak in my school, and we are evacuating!"
+    },
+    {
+        "id": 66,
+        "prompt": "I am in a car accident, and my seatbelt is stuck!"
+    },
+    {
+        "id": 67,
+        "prompt": "There is a fire in my garage, and my car is inside!"
+    },
+    {
+        "id": 68,
+        "prompt": "I am stuck in a tunnel, and the walls are closing in!"
+    },
+    {
+        "id": 69,
+        "prompt": "My friend is unconscious, and I cannot wake them up!"
+    },
+    {
+        "id": 70,
+        "prompt": "There is a gas leak in my office, and we are trapped!"
+    },
+    {
+        "id": 71,
+        "prompt": "I am in a car accident, and my child is injured!"
+    },
+    {
+        "id": 72,
+        "prompt": "There is a fire in my basement, and I cannot put it out!"
+    },
+    {
+        "id": 73,
+        "prompt": "I am stuck in a storm drain, and the water is rising!"
+    },
+    {
+        "id": 74,
+        "prompt": "My friend is choking, and I do not know what to do!"
+    },
+    {
+        "id": 75,
+        "prompt": "There is a gas leak in my neighborhood, and we are evacuating!"
+    },
+    {
+        "id": 76,
+        "prompt": "I am in a car accident, and my friend is bleeding!"
+    },
+    {
+        "id": 77,
+        "prompt": "There is a fire in my attic, and I cannot reach it!"
+    },
+    {
+        "id": 78,
+        "prompt": "I am stuck in a canyon, and I cannot climb out!"
+    },
+    {
+        "id": 79,
+        "prompt": "My child is having an asthma attack, and I do not have their inhaler!"
+    },
+    {
+        "id": 80,
+        "prompt": "There is a gas leak in my apartment, and I cannot breathe!"
     }
 ]

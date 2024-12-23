@@ -17,7 +17,7 @@
     <div class="main-container">
         <!-- Main Interaction Area -->
         <div class="main-area">
-            <textarea id="main-textbox" placeholder="Main interaction area" class="main-textbox"></textarea>
+            <textarea id="main-textbox" placeholder="Main interaction area" class="main-textbox" readonly></textarea>
             <!-- Button Container -->
             <div class="button-container">
                 <button id="record-audio" class="large-button">Record Audio</button>
@@ -49,11 +49,7 @@
         </div>
     </div>
 
-    <script>
-        // JavaScript for End Simulation Button
-        document.getElementById("end-simulation-button").addEventListener("click", () => {
-            window.location.href = "index.html"; // Redirect to the first page
-        });
-    </script>
+    <script type="module" src="app.js"></script>
+
 </body>
 </html>
