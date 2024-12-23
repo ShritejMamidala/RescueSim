@@ -14,7 +14,7 @@ os.makedirs(TEMP_AUDIO_DIR, exist_ok=True)
 
 def generate_gpt_response(formatted_log):
     response = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o-mini",
         messages=[
             {"role": "system", "content": "You are a victim in a 911 emergency scenario. Answer only as the victim. Do not include 'Victim:' in your response, do not provide any information the dispatcher has not asked for. keep your responses short and consise. very slowly escalate the situation. If the dispatcher hasn't asked anything, remain silent."},
             {"role": "user", "content": formatted_log}
