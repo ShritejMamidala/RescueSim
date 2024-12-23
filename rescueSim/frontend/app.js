@@ -11,22 +11,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const recordAudioButton = document.getElementById("record-audio");
     const listenToCallerButton = document.getElementById("listen-to-caller");
 
-    // Function to reset the simulation
-    async function resetSimulation() {
-        try {
-            const response = await fetch("/reset-simulation", { method: "POST" });
-            const data = await response.json();
-            console.log(data.message); // Optional: Log the success message
-        } catch (error) {
-            console.error("Error resetting simulation:", error);
-        }
-    }
+    let mediaRecorder = null;
+    let audioChunks = [];
 
     // End Simulation Button
     if (endSimulationButton) {
         endSimulationButton.addEventListener("click", async () => {
-            await resetSimulation(); // Reset the conversation log
-            window.location.href = "index.html"; // Redirect to the main page
+            try {
+                await API.resetSimulation(); // Call API to reset simulation
+                window.location.href = "index.html"; // Redirect to the main page
+            } catch (error) {
+                console.error("Failed to reset simulation:", error);
+            }
         });
     }
 
@@ -40,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Navigate and Start Simulation
     async function startSimulationAndNavigate(mode) {
         try {
-            const prompt = await API.startSimulation(); // Fetch the scenario prompt from the backend
-            localStorage.setItem("simulationPrompt", prompt); // Save the prompt in localStorage
+            const prompt = await API.startSimulation(); // Fetch scenario prompt from API
+            localStorage.setItem("simulationPrompt", prompt); // Save prompt in localStorage
             if (mode === "text") {
                 window.location.href = "text-to-text.html";
             } else if (mode === "speech") {
@@ -72,27 +68,78 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Text-to-Text Input Logic
-    if (userInput) {
-        userInput.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" && userInput.value.trim()) {
-                const userMessage = document.createElement("div");
-                userMessage.textContent = userInput.value;
-                userMessage.classList.add("user-message");
-                mainTextbox.appendChild(userMessage);
-                userInput.value = "";
-                mainTextbox.scrollTop = mainTextbox.scrollHeight;
+    // Start Recording Function
+    async function startRecording() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const mimeType = MediaRecorder.isTypeSupported("audio/webm")
+                ? "audio/webm"
+                : ""; // Fallback to default
+
+            mediaRecorder = new MediaRecorder(stream, { mimeType });
+
+            audioChunks = []; // Reset audio chunks
+
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    audioChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = async () => {
+                const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+                console.log("Recorded Blob Type:", audioBlob.type); // Should log "audio/webm"
+                try {
+                    const transcription = await API.uploadAudio(audioBlob); // Upload audio as WebM
+                    displayTranscription(transcription); // Display transcription in the textbox
+                } catch (error) {
+                    console.error("Error uploading audio:", error);
+                }
+            };
+
+            mediaRecorder.start();
+            console.log("Recording started...");
+        } catch (error) {
+            console.error("Error starting recording:", error);
+        }
+    }
+
+    // Stop Recording Function
+    function stopRecording() {
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+            mediaRecorder.stop();
+            console.log("Recording stopped...");
+        }
+    }
+
+    // Display Transcription on UI
+    function displayTranscription(transcription) {
+        if (mainTextbox) {
+            // Add a newline only if there is already content in the textbox
+            const separator = mainTextbox.value.trim() !== "" ? "\n\n" : "";
+            mainTextbox.value += `${separator}Dispatcher: ${transcription}`;
+            mainTextbox.scrollTop = mainTextbox.scrollHeight; // Scroll to the latest entry
+        }
+        console.log("Transcription added to main textbox:", transcription);
+    }
+
+    // Record Audio Button Logic
+    if (recordAudioButton) {
+        let isRecording = false;
+
+        recordAudioButton.addEventListener("click", () => {
+            if (!isRecording) {
+                startRecording();
+                recordAudioButton.textContent = "Stop Recording";
+            } else {
+                stopRecording();
+                recordAudioButton.textContent = "Record Audio";
             }
+            isRecording = !isRecording;
         });
     }
 
     // Speech-to-Speech Button Logic
-    if (recordAudioButton) {
-        recordAudioButton.addEventListener("click", () => {
-            console.log("Audio recording started...");
-        });
-    }
-
     if (listenToCallerButton) {
         listenToCallerButton.addEventListener("click", () => {
             console.log("Listening to caller...");
@@ -103,4 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mainTextbox) {
         populateMainTextbox();
     }
+
+
+    
 });
