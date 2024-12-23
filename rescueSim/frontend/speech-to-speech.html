@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech-to-Speech Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="page-header">
+        <h1>Speech To Speech Mode</h1>
+        <button id="end-simulation-button" class="end-button">End Simulation</button>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Main Interaction Area -->
+        <div class="main-area">
+            <textarea id="main-textbox" placeholder="Main interaction area" class="main-textbox"></textarea>
+            <!-- Button Container -->
+            <div class="button-container">
+                <button id="record-audio" class="large-button">Record Audio</button>
+                <button id="listen-to-caller" class="large-button">Listen to Caller</button>
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h2>Information</h2>
+            <ul>
+                <li>
+                    <strong>Location:</strong>
+                    <input type="text" id="location" class="info-input" placeholder="Enter location">
+                </li>
+                <li>
+                    <strong>Status:</strong>
+                    <input type="text" id="status" class="info-input" placeholder="Enter status">
+                </li>
+                <li>
+                    <strong>Service Needed:</strong>
+                    <input type="text" id="service-needed" class="info-input" placeholder="Enter service needed">
+                </li>
+                <li>
+                    <strong>Situation Details:</strong>
+                    <input type="text" id="situation-details" class="info-input" placeholder="Enter situation details">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for End Simulation Button
+        document.getElementById("end-simulation-button").addEventListener("click", () => {
+            window.location.href = "index.html"; // Redirect to the first page
+        });
+    </script>
+</body>
+</html>

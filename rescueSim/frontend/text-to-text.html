@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Text Simulation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="page-header">
+        <h1>Text To Text Mode</h1>
+        <button id="end-simulation-button" class="end-button">End Simulation</button>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Main Interaction Area -->
+        <div class="main-area">
+            <div id="main-textbox" class="main-textbox"></div>
+            <!-- Input Container -->
+            <div class="input-container">
+                <input
+                    type="text"
+                    id="user-input"
+                    class="user-input"
+                    placeholder="Type your message here..."
+                />
+            </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <h2>Information</h2>
+            <ul>
+                <li>
+                    <strong>Location:</strong>
+                    <input type="text" id="location" class="info-input" placeholder="Enter location">
+                </li>
+                <li>
+                    <strong>Status:</strong>
+                    <input type="text" id="status" class="info-input" placeholder="Enter status">
+                </li>
+                <li>
+                    <strong>Service Needed:</strong>
+                    <input type="text" id="service-needed" class="info-input" placeholder="Enter service needed">
+                </li>
+                <li>
+                    <strong>Situation Details:</strong>
+                    <input type="text" id="situation-details" class="info-input" placeholder="Enter situation details">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for End Simulation Button
+        document.getElementById("end-simulation-button").addEventListener("click", () => {
+            window.location.href = "index.html"; // Redirect to the first page
+        });
+
+        // JavaScript for Text Input Handling
+        const mainTextbox = document.getElementById("main-textbox");
+        const userInput = document.getElementById("user-input");
+
+        userInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" && userInput.value.trim() !== "") {
+                const userMessage = document.createElement("div");
+                userMessage.textContent = userInput.value;
+                userMessage.classList.add("user-message");
+                mainTextbox.appendChild(userMessage);
+                userInput.value = ""; // Clear the input box
+                mainTextbox.scrollTop = mainTextbox.scrollHeight; // Auto-scroll to the bottom
+            }
+        });
+    </script>
+</body>
+</html>
