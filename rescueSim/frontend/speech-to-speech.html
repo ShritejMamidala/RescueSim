@@ -6,29 +6,13 @@
     <title>Speech-to-Speech Simulation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
-</head>
-
-<head>
-    <title>Your Website Title</title>
-    <!-- Default Favicon -->
-    <link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
-    
-    <!-- PNG Favicon for Modern Browsers -->
-    <link rel="icon" type="image/png" href="/frontend/favicon.png">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/frontend/favicon.png">
-</head>
-
 <body>
     <!-- Header Section -->
     <header class="page-header">
         <h1>Speech To Speech Mode</h1>
+        <button id="receive-feedback-button" class="feedback-button">Receive Feedback</button>
         <button id="end-simulation-button" class="end-button">End Simulation</button>
     </header>
-
-    <!-- Main Container -->
     <div class="main-container">
         <!-- Main Interaction Area -->
         <div class="main-area">
@@ -39,32 +23,16 @@
                 <button id="record-audio" class="large-button">Record Audio</button>
             </div>
         </div>
-
-        <!-- Right Panel -->
         <div class="right-panel">
             <h2>Information</h2>
             <ul>
-                <li>
-                    <strong>Location:</strong>
-                    <input type="text" id="location" class="info-input" placeholder="Enter location">
-                </li>
-                <li>
-                    <strong>Status:</strong>
-                    <input type="text" id="status" class="info-input" placeholder="Enter status">
-                </li>
-                <li>
-                    <strong>Service Needed:</strong>
-                    <input type="text" id="service-needed" class="info-input" placeholder="Enter service needed">
-                </li>
-                <li>
-                    <strong>Situation Details:</strong>
-                    <input type="text" id="situation-details" class="info-input" placeholder="Enter situation details">
-                </li>
+                <li><strong>Location:</strong><input type="text" id="location" class="info-input" placeholder="Enter location"></li>
+                <li><strong>Status:</strong><input type="text" id="status" class="info-input" placeholder="Enter status"></li>
+                <li><strong>Service Needed:</strong><input type="text" id="service-needed" class="info-input" placeholder="Enter service needed"></li>
+                <li><strong>Situation Details:</strong><input type="text" id="situation-details" class="info-input" placeholder="Enter situation details"></li>
             </ul>
         </div>
     </div>
-
     <script type="module" src="app.js"></script>
-
 </body>
 </html>
