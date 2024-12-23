@@ -1,6 +1,7 @@
 import openai
+import os
 
-openai.api_key = "OPENAI_API_KEY"  # Replace with your OpenAI API key
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def get_victim_response(formatted_log: str) -> str:
@@ -32,3 +33,4 @@ def get_victim_response(formatted_log: str) -> str:
     except Exception as e:
         print(f"Error generating GPT response: {e}")
         raise RuntimeError("Failed to generate victim response from GPT.")
+

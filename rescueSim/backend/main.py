@@ -8,6 +8,13 @@ from start_simulation import get_random_scenario
 from reset_simulation import reset_conversation_log
 from listen_to_caller import process_listen_to_caller
 import shutil
+from fastapi import FastAPI, HTTPException, Body
+from fastapi.responses import JSONResponse
+from text_to_text import get_victim_response
+from pydantic import BaseModel
+
+class DispatcherRequest(BaseModel):
+    dispatcher_message: str
 
 app = FastAPI()
 
@@ -20,18 +27,22 @@ app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 conversation_log = {"victim_responses": [], "dispatcher_responses": []}
 
 def format_conversation_log(conversation_log):
-    """Formats the conversation log in an alternating sequence of victim and dispatcher responses."""
-    victim_responses = conversation_log["victim_responses"]
-    dispatcher_responses = conversation_log["dispatcher_responses"]
+    try:
+        victim_responses = conversation_log["victim_responses"]
+        dispatcher_responses = conversation_log["dispatcher_responses"]
 
-    formatted_log = []
-    for i in range(max(len(victim_responses), len(dispatcher_responses))):
-        if i < len(victim_responses):
-            formatted_log.append(f"Victim: {victim_responses[i]}")
-        if i < len(dispatcher_responses):
-            formatted_log.append(f"Dispatcher: {dispatcher_responses[i]}")
-
-    return "\n".join(formatted_log)
+        formatted_log = []
+        for i in range(max(len(victim_responses), len(dispatcher_responses))):
+            if i < len(victim_responses):
+                formatted_log.append(f"Victim: {victim_responses[i]}")
+            if i < len(dispatcher_responses):
+                formatted_log.append(f"Dispatcher: {dispatcher_responses[i]}")
+        log = "\n".join(formatted_log)
+        print(f"Formatted Log:\n{log}")  # Debug log formatting
+        return log
+    except Exception as e:
+        print(f"Error in formatting conversation log: {e}")
+        raise
 
 def clear_temp_folder(folder_path: str):
     """
@@ -124,3 +135,36 @@ async def get_audio(filename: str):
     if not os.path.exists(audio_path):
         return JSONResponse(content={"error": "Audio file not found."}, status_code=404)
     return FileResponse(audio_path)
+
+
+
+
+@app.post("/text-to-text")
+async def text_to_text_endpoint(request: DispatcherRequest):
+    """
+    API endpoint for Text-to-Text mode.
+    """
+    try:
+        dispatcher_message = request.dispatcher_message
+        print(f"Received dispatcher_message: {dispatcher_message}")  # Debug log
+
+        # Add dispatcher message to conversation log
+        conversation_log["dispatcher_responses"].append(dispatcher_message)
+        print(f"Updated dispatcher_responses: {conversation_log['dispatcher_responses']}")  # Debug log
+
+        # Format the conversation log
+        formatted_log = format_conversation_log(conversation_log)
+        print(f"Formatted conversation log: {formatted_log}")  # Debug log
+
+        # Get GPT response
+        victim_response = get_victim_response(formatted_log)
+        print(f"GPT response: {victim_response}")  # Debug log
+
+        # Update victim responses
+        conversation_log["victim_responses"].append(victim_response)
+        print(f"Updated victim_responses: {conversation_log['victim_responses']}")  # Debug log
+
+        return JSONResponse(content={"victim_response": victim_response}, status_code=200)
+    except Exception as e:
+        print(f"Error in text-to-text endpoint: {e}")  # Detailed error log
+        raise HTTPException(status_code=500, detail="An error occurred while processing the request.")

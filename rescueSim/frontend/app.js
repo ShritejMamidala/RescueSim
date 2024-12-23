@@ -15,6 +15,39 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioChunks = [];
     let isRecording = false; // Tracks recording state
 
+    function appendMessage(role, message) {
+        const newMessage = document.createElement("p"); // Create a new paragraph for each message
+        newMessage.textContent = `${role}: ${message}`;
+        mainTextbox.appendChild(newMessage); // Add the message to the conversation box
+        mainTextbox.scrollTop = mainTextbox.scrollHeight; // Auto-scroll to the latest message
+    }
+
+    // Event listener for Enter key in the input box (Text-to-Text Mode)
+    userInput?.addEventListener("keydown", async (event) => {
+        if (event.key === "Enter") {
+            const dispatcherMessage = userInput.value.trim();
+            if (!dispatcherMessage) return; // Skip if input is empty
+
+            // Step 1: Append the dispatcher's message to the textbox
+            appendMessage("Dispatcher", dispatcherMessage);
+
+            // Step 2: Clear the input field
+            userInput.value = "";
+
+            // Step 3: Send the message to the backend and get victim response
+            try {
+                const victimResponse = await API.sendDispatcherMessage(dispatcherMessage); // Use API module
+
+                // Step 4: Append the victim's response to the textbox
+                appendMessage("Victim", victimResponse);
+            } catch (error) {
+                console.error("Error processing text-to-text interaction:", error);
+                alert("Failed to process your message. Please try again.");
+            }
+        }
+    });
+
+
     // End Simulation Button
     if (endSimulationButton) {
         endSimulationButton.addEventListener("click", async () => {
