@@ -1,8 +1,10 @@
 import random
 import json
+import os 
 
 # Path to the scenarios JSON file
-SCENARIOS_FILE_PATH = r"C:\Users\shrit\Desktop\Ml_Projects\911_Dispatch\911-dispatch\rescueSim\backend\data\scenarios.json"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+SCENARIOS_FILE_PATH = os.path.join(BASE_DIR, "data", "scenarios.json")
 
 def get_random_scenario():
     # Load scenarios from the JSON file

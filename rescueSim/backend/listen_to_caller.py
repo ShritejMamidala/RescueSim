@@ -7,7 +7,9 @@ import uuid
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure this environment variable is set
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_CLOUD_TTS")
 
-TEMP_AUDIO_DIR = "./temp2"  # Directory to store temporary audio files
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+TEMP_AUDIO_DIR = os.path.join(BASE_DIR, "temp2")
+os.makedirs(TEMP_AUDIO_DIR, exist_ok=True)  # Ensure the directory exists
 
 # Ensure the temp directory exists
 os.makedirs(TEMP_AUDIO_DIR, exist_ok=True)

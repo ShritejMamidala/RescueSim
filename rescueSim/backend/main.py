@@ -12,7 +12,11 @@ import shutil
 app = FastAPI()
 
 # Mount the frontend directory to serve static files
-app.mount("/frontend", StaticFiles(directory=r"C:\Users\shrit\Desktop\Ml_Projects\911_Dispatch\911-dispatch\rescueSim\frontend"), name="frontend")
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
+FRONTEND_DIR = os.path.join(BASE_DIR, "../frontend")  # Adjust the path relative to the script
+
+app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
+
 conversation_log = {"victim_responses": [], "dispatcher_responses": []}
 
 def format_conversation_log(conversation_log):
