@@ -8,10 +8,9 @@ const selectionScreen = document.querySelector('.selection-screen');
 // Main Chat Window
 const mainChatWindow = document.getElementById('main-chat-window');
 const modeTitle = document.getElementById('mode-title');
-const chatInput = document.getElementById('chat-input');
 const recordButton = document.getElementById('record-button');
-const playAudioButton = document.getElementById('play-audio-button');
 const listenToCallerButton = document.getElementById('listen-to-caller-button');
+const captionsContainer = document.getElementById('captions-container');
 
 // Audio variables
 let mediaRecorder;
@@ -51,16 +50,14 @@ startButton.addEventListener('click', () => {
 
     if (isSpeechToSpeech) {
         modeTitle.textContent = 'Speech to Speech Mode';
-        chatInput.classList.add('hidden');
         recordButton.classList.remove('hidden');
-        playAudioButton.classList.remove('hidden');
         listenToCallerButton.classList.remove('hidden');
+        captionsContainer.classList.remove('hidden');
     } else if (isTextToText) {
         modeTitle.textContent = 'Text to Text Mode';
-        chatInput.classList.remove('hidden');
         recordButton.classList.add('hidden');
-        playAudioButton.classList.add('hidden');
         listenToCallerButton.classList.add('hidden');
+        captionsContainer.classList.add('hidden');
     }
 });
 
@@ -85,13 +82,6 @@ recordButton.addEventListener('click', async () => {
         mediaRecorder.stop();
         recordButton.textContent = 'Record Audio';
     }
-});
-
-// Play Audio Button
-playAudioButton.addEventListener('click', () => {
-    const predefinedAudioURL = 'path/to/your/predefined-audio-file.mp3'; // Replace with the path to your predefined audio file
-    const audio = new Audio(predefinedAudioURL);
-    audio.play();
 });
 
 // End Simulation Button

@@ -19,28 +19,40 @@ body, html {
     height: 100vh;
     background-color: #131B33; /* Darker blue */
     color: #8CD6FF; /* Neon blue */
-    gap: 20px;
+    gap: 30px; /* Increased spacing */
 }
 
 .selection-screen h1 {
-    font-size: 2.5rem;
-    border-bottom: 2px solid #1C75BC; /* Cyber blue */
-    padding-bottom: 10px;
+    font-size: 3.75rem; /* Enlarged by 1.5x */
+    text-align: center;
+}
+
+/* Styling for "Welcome to" text */
+.welcome {
+    color: #8CD6FF; /* Same color as "Sim" */
+    font-weight: normal;
+    margin-right: 5px;
+}
+
+/* Styling for "Rescue" text */
+.rescue {
+    color: #FF4D4D; /* Red hospital-like color */
+    font-weight: bold;
 }
 
 .button-group {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px; /* Increased spacing between buttons */
     justify-content: center;
 }
 
 .toggle-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 22.5px 45px; /* Enlarged padding by 1.5x */
+    font-size: 1.8rem; /* Enlarged text size by 1.5x */
     font-family: 'Orbitron', sans-serif;
     border: none;
-    border-radius: 5px;
+    border-radius: 7.5px; /* Slightly rounded corners */
     background-color: #0F1A2D;
     color: #00FFFF;
     cursor: pointer;
@@ -56,20 +68,24 @@ body, html {
     background-color: #1C2A3C;
 }
 
+/* Start Simulation Button */
 .start-button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    margin-top: 60px; /* Slightly increased vertical margin */
+    padding: 22.5px 45px; /* Enlarged padding by 1.5x */
+    font-size: 2.25rem; /* Enlarged text size by 1.5x */
     font-family: 'Orbitron', sans-serif;
     border: none;
-    border-radius: 5px;
-    background-color: #0F1A2D;
-    color: #00FFFF;
+    border-radius: 7.5px; /* Slightly rounded corners */
+    background-color: #00FFFF; /* Brighter neon blue */
+    color: #0A0F24; /* Dark text for contrast */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 30px #00FFFF; /* Enhanced glow effect */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .start-button:hover {
-    background-color: #1C2A3C;
+    background-color: #00B3CC; /* Slightly darker neon blue on hover */
+    box-shadow: 0 0 45px #00FFFF; /* Enhanced glow on hover */
 }
 
 /* Main Container */
@@ -93,6 +109,25 @@ header h1 {
     padding-bottom: 10px;
 }
 
+/* End Simulation Button */
+#end-simulation-button {
+    position: absolute;
+    top: 20px; /* Moves the button down slightly from the top */
+    right: 20px; /* Aligns the button to the right */
+    padding: 10px 20px;
+    background-color: #FF0000; /* Red for End Simulation */
+    color: #FFF;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000; /* Ensures it's always on top */
+}
+
+#end-simulation-button:hover {
+    background-color: #FF4D4D; /* Lighter red on hover */
+}
+
 /* Content Layout */
 .content {
     display: flex;
@@ -112,42 +147,56 @@ header h1 {
     gap: 20px;
 }
 
-.message-box {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 10px;
-    background-color: #0F1A2D;
-    border: 1px solid #1C75BC;
-    border-radius: 10px;
-}
-
-.input-container {
+.button-container {
     display: flex;
-    gap: 10px;
-    border-top: 1px solid #1C75BC;
-    padding-top: 10px;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
 }
 
-.input-container input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #1C75BC;
-    border-radius: 5px;
-    background-color: #0F1A2D;
+.large-button {
+    padding: 30px 60px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    background-color: #1C75BC; /* Cyber blue */
+    color: #FFF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.large-button:hover {
+    background-color: #255FA3;
+}
+
+/* Captions Container */
+#captions-container {
+    margin-top: 20px;
+    width: 80%; /* Adjusts the size to avoid touching the Information box */
+    align-self: flex-start;
+}
+
+#captions-container h2 {
+    font-size: 1.5rem;
+    color: #8CD6FF;
+    margin-bottom: 10px;
+}
+
+#captions-box {
+    background-color: #0F1A2D; /* Darker blue */
+    border: 1px solid #1C75BC; /* Cyber blue */
+    border-radius: 10px;
+    padding: 20px;
+    height: 200px; /* Adjusted to fit well */
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
     color: #8CD6FF;
 }
 
-.input-container button {
-    padding: 15px 30px;
-    background-color: #1C75BC;
-    color: #FFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.input-container button.hidden {
-    display: none;
+.captions-content {
+    font-size: 1.2rem;
+    line-height: 1.5;
 }
 
 /* Right Panel */
@@ -157,8 +206,28 @@ header h1 {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(140, 214, 255, 0.5);
+    height: 80%; /* Extended to fit as per the provided design */
 }
 
+/* Input Box Styling for Information Panel */
+.info-input {
+    background-color: #1C2A3C; /* Slightly darker blue for input box */
+    border: 1px solid #8CD6FF; /* Light blue border */
+    color: #FFFFFF; /* White text */
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    width: 80%; /* Ensures sufficient width for editing */
+}
+
+.info-input:focus {
+    outline: none;
+    border-color: #00FFFF; /* Bright blue when focused */
+}
+
+/* Right Panel Header */
 .right-panel h2 {
     color: #8CD6FF;
     margin-bottom: 20px;
@@ -172,21 +241,6 @@ header h1 {
 .right-panel li {
     margin-bottom: 10px;
     line-height: 1.6;
-}
-
-.clear-history {
-    margin-top: 20px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #FF0000;
-    color: #FFF;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.clear-history:hover {
-    background-color: #FF4D4D;
 }
 
 /* Hidden Class */
