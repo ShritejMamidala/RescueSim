@@ -15,6 +15,7 @@ from pydantic import BaseModel
 from feedback import process_audio_feedback
 import json
 from simulation_feedback import analyze_performance
+from feedback_test import analyze_text_file
 
 
 class DispatcherRequest(BaseModel):
@@ -28,9 +29,26 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "../frontend")  # Adjust the path relative
 
 app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
-TEMP_FEEDBACK_DIR = "./temp_feedback"
+TEMP_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "temp3")
+os.makedirs(TEMP_FOLDER, exist_ok=True)
 
 conversation_log = {"victim_responses": [], "dispatcher_responses": []}
+
+def clear_temp_folder(folder_path: str):
+    """
+    Clears all files and subfolders within the specified folder.
+    """
+    if os.path.exists(folder_path):
+        for filename in os.listdir(folder_path):
+            file_path = os.path.join(folder_path, filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)  # Remove file or symbolic link
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)  # Remove directory
+            except Exception as e:
+                print(f"Failed to delete {file_path}: {e}")
+
 
 def format_conversation_log(conversation_log):
     try:
@@ -260,3 +278,30 @@ async def process_audio(file: UploadFile = File(...)):
         status_code=200
     )
 
+@app.post("/process-text-file")
+async def process_text_file(file: UploadFile = File(...)):
+    """
+    API endpoint to process a text file uploaded by the user.
+    It sends the file's content to GPT for both formatting and feedback generation.
+    """
+    try:
+        # Save the uploaded file temporarily
+        file_path = os.path.join(TEMP_FOLDER, file.filename)
+        with open(file_path, "wb") as f:
+            content = await file.read()
+            f.write(content)
+
+        # Decode the file content to a string
+        with open(file_path, "r", encoding="utf-8") as f:
+            text = f.read()
+
+        # Analyze the text file
+        formatted_log, feedback = analyze_text_file(text)
+
+        # Optionally clear the temp folder
+        clear_temp_folder(TEMP_FOLDER)
+
+        return JSONResponse(content={"conversation_log": formatted_log, "feedback": feedback})
+    except Exception as e:
+        print(f"Error processing text file: {e}")
+        raise HTTPException(status_code=500, detail="Failed to process text file")

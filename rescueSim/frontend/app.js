@@ -316,4 +316,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    const textUploadInput = document.getElementById("text-upload");
+    const conversationLogTextarea = document.getElementById("conversation-log");
+    const detailedFeedbackTextarea = document.getElementById("detailed-feedback");
+
+    // Event listener for text file upload
+    textUploadInput.addEventListener("change", async (event) => {
+        const file = event.target.files[0];
+        if (!file) {
+            alert("Please select a text file.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            // Call the API to process the text file
+            const response = await fetch("/process-text-file", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            // Populate the conversation log textarea
+            conversationLogTextarea.value = data.conversation_log;
+
+            // Populate the feedback textarea
+            detailedFeedbackTextarea.value = data.feedback;
+        } catch (error) {
+            console.error("Error uploading text file:", error);
+            alert("Failed to process the text file. Please try again.");
+        }
+    });
+    
+
 });
