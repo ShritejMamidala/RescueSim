@@ -35,7 +35,7 @@ body, html {
 }
 
 .selection-screen h1 {
-    font-size: 3.75rem; /* Enlarged for prominence */
+    font-size: 6rem; /* Enlarged for prominence */
     text-align: center;
 }
 
@@ -51,66 +51,81 @@ body, html {
     color: #FF4D4D; /* Red hospital-like color */
     font-weight: bold;
 }
-
-/* Centering the Button Group */
 .button-group {
     display: flex;
-    flex-direction: row; /* Keep buttons in a row */
-    gap: 20px; /* Space between buttons */
-    justify-content: center; /* Horizontally center buttons */
-    align-items: center; /* Align buttons vertically */
-    margin: 20px 0; /* Add spacing above and below the group */
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Increases vertical spacing between groups */
+    gap: 20px; /* Adds spacing between buttons in the same group */
 }
 
-/* Centering the Container */
-.center-container {
-    display: flex;
-    flex-direction: column; /* Stack multiple button groups vertically */
-    align-items: center; /* Horizontally center all button groups */
-    justify-content: center; /* Vertically center all button groups */
-    height: 100vh; /* Full viewport height */
-}
-
-/* Buttons */
 .start-button, .toggle-button {
-    padding: 22.5px 45px; /* Enlarged padding for emphasis */
-    font-size: 1.8rem; /* Consistent button text size */
-    font-family: 'Orbitron', sans-serif;
-    border: none;
-    border-radius: 7.5px; /* Rounded corners */
-    background-color: #0F1A2D; /* Darker background */
-    color: #00FFFF; /* Neon blue text */
+    flex-basis: 100%; /* Button width adjusts proportionally to its container */
+    min-width: 200px; /* Ensures a minimum width for smaller screens */
+    aspect-ratio: 4 / 1; /* Keeps consistent button height proportional to width */
+    font-size: 2.5rem; /* Scales text size based on the root font size */
+    font-family: 'Orbitron', sans-serif; /* Orbitron font for futuristic styling */
+    text-transform: uppercase; /* Uppercase text for a tech-inspired look */
+    letter-spacing: 1.2px; /* Adds some spacing between letters */
+    padding: 0.5em 1em; /* Adds internal spacing */
+    border-radius: 15px; /* Makes the corners more rounded */
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    color: black;
+    white-space: pre-wrap; /* Preserves spacing and allows wrapping */
+    text-align: center; /* Ensures text is centered */
+    line-height: 1; /* Adjust line spacing for better readability */
+
+    
 }
 
-/* Start Simulation and Feedback Buttons */
+/* Cool cyan effect for buttons */
 .start-button {
-    background-color: #00FFFF; /* Bright blue for emphasis */
-    color: #0A0F24; /* Dark text for contrast */
-    box-shadow: 0 0 30px #00FFFF; /* Glow effect */
+    background: linear-gradient(135deg, #00eaff, #007bff);
+    color: white;
 }
 
-.start-button:hover {
-    background-color: #00B3CC; /* Slightly darker blue */
-    box-shadow: 0 0 45px #00FFFF; /* Enhanced glow */
+.start-button::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 400%;
+    height: 400%;
+    background: radial-gradient(circle, rgba(0, 234, 255, 0.5), transparent);
+    transition: transform 0.6s ease;
+    transform: rotate(45deg) scale(0);
+    z-index: 1;
 }
 
-/* Toggle Button States */
-.toggle-button.active {
-    background-color: #0A0D18; /* Highlight active button */
-    color: #1C75BC; /* Deeper blue for active state */
+.start-button:hover::before {
+    transform: rotate(45deg) scale(1);
+}
+
+/* Navy blue effect for toggle buttons */
+.toggle-button {
+    background: linear-gradient(135deg, #001F3F, #003366);
+    color: white;
 }
 
 .toggle-button:hover {
-    background-color: #1C2A3C;
+    background: linear-gradient(135deg, #003366, #005099);
 }
 
-/* Hidden Elements */
+/* Text alignment and spacing */
+.start-button, .toggle-button {
+    z-index: 2; /* Ensures text is above background effects */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .hidden {
-    display: none;
+    display: none; /* Hides elements completely */
 }
-
 /* Main Container */
 .main-container {
     display: flex; /* Enables side-by-side layout */

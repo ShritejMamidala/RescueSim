@@ -31,6 +31,15 @@
             background-color: transparent; /* Make it transparent */
         }
     </style>
+
+<link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
+
+<!-- PNG Favicon for Modern Browsers -->
+<link rel="icon" type="image/png" href="/frontend/favicon.png">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" href="/frontend/favicon.png">
+
 </head>
 <body>
     <!-- Particle Background -->
@@ -43,11 +52,11 @@
         </h1>
         <div class="button-group">
             <button id="start-simulation" class="start-button">Start Simulation</button>
-            <button id="start-feedback" class="start-button">Start Feedback</button>
+            <button id="start-feedback" class="start-button">Start<br>Feedback</button>
         </div>
         <div id="simulation-options" class="button-group hidden">
-            <button id="text-to-text" class="toggle-button">Text based Simulation</button>
-            <button id="speech-to-speech" class="toggle-button">Speech based Simulation</button>
+            <button id="text-to-text" class="toggle-button">Text<br>Simulation</button>
+            <button id="speech-to-speech" class="toggle-button">Audio<br>Simulation</button>
         </div>
     </div>
 
@@ -59,7 +68,7 @@
                 number: { value: 50 },
                 color: { value: "#8CD6FF" },
                 shape: { type: "circle" },
-                opacity: { value: 0.3 },
+                opacity: { value: 1 },
                 size: { value: 3 },
                 move: {
                     speed: 2,
