@@ -4,19 +4,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0A0F24;
+            color: #8CD6FF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background-color: #0F1A2D;
+            color: #8CD6FF;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px; /* Space around the container */
+            padding-right: 30px; /* Add extra spacing on the right */
+            gap: 20px; /* Space between elements inside the container */
+            width: 98%;
+            height: 95vh; /* Extend to nearly full viewport height */
+    }
+
+        .feedback-box {
+            width: 98%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .feedback-title, .feedback-subtitle {
+            font-size: 1.2rem;
+            color: #8CD6FF;
+        }
+
+        .single-line-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #1C75BC;
+            border-radius: 5px;
+            background-color: #1C2A3C;
+            color: #FFFFFF;
+        }
+
+        .single-line-input:focus {
+            outline: none;
+            border-color: #00FFFF;
+        }
+
+        .multi-line-textbox {
+            width: 100%;
+            height: 100vh; /* Makes the height 30% of the viewport height */
+            min-height: 200px; /* Ensures it doesn't shrink too much on small screens */
+            max-height: 500px; /* Prevents it from growing too large on larger screens */
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #1C75BC;
+            border-radius: 5px;
+            background-color: #1C2A3C;
+            color: #FFFFFF;
+            resize: none; /* Prevents manual resizing */
+        }
+        .multi-line-textbox:focus {
+            outline: none;
+            border-color: #00FFFF;
+        }
+    </style>
 </head>
 <body>
-    <!-- Header Section -->
     <header class="page-header">
         <h1>Feedback</h1>
     </header>
     <div class="main-container">
         <div class="feedback-box">
-            <div class="feedback-content">
-                <div class="feedback-title">Overall performance:</div>
-                <div class="feedback-subtitle">Feedback:</div>
-            </div>
+            <label for="overall-performance" class="feedback-title">Overall Performance:</label>
+            <input type="text" id="overall-performance" class="single-line-input" placeholder="Enter overall performance..." readonly>
+
+            <label for="detailed-feedback" class="feedback-subtitle">Feedback:</label>
+            <textarea id="detailed-feedback" class="multi-line-textbox" placeholder="Enter detailed feedback..." readonly></textarea>
         </div>
     </div>
 </body>
