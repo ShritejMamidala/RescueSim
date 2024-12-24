@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
+    <title>Simulation Feedback</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- Back button to return to the start screen -->
+    <a href="index.html" class="back-button">Back</a>
+
     <header class="page-header">
         <h1>Feedback</h1>
     </header>
-    <div class="main-container">
-        <div class="feedback-box">
-            <div class="feedback-content">
-                <div class="feedback-title">Overall performance:</div>
-                <div class="feedback-subtitle">Feedback:</div>
-            </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Conversation</h2>
+            <textarea readonly placeholder="Conversation content will appear here..."></textarea>
         </div>
+        <div class="box">
+            <h2>Feedback</h2>
+            <textarea readonly placeholder="Feedback content will appear here..."></textarea>
+        </div>
+    </div>
+    <div class="attach-button-container">
+        <label for="audio-upload">Attach Audio File</label>
+        <input type="file" id="audio-upload" accept="audio/*">
+
+        <label for="text-upload">Attach Text File</label>
+        <input type="file" id="text-upload" accept=".txt">
     </div>
 </body>
 </html>

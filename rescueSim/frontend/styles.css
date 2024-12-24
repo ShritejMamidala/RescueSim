@@ -326,7 +326,6 @@ body, html {
     background-color: #255FA3; /* Slightly darker blue on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
-<<<<<<< HEAD
 
 
 /* Custom scrollbar for modern browsers */
@@ -351,7 +350,6 @@ body, html {
 .main-textbox {
     resize: none; /* Disables resizing */
 }
-=======
 /* Feedback Box Styling */
 .feedback-box {
     width: 80%; /* Adjust width as needed */
@@ -458,4 +456,42 @@ body, html {
     font-family: 'Orbitron', sans-serif;
     margin-top: 0; /* Prevent default margin above */
 }
->>>>>>> 6e0911ac83fc23e69494bf8d4d703d19b32ddc53
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #1C75BC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #255FA3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #1C75BC;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #255FA3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
