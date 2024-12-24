@@ -29,6 +29,11 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "../frontend")  # Adjust the path relative
 
 app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
 
+TEMP_FEEDBACK_DIR  = os.path.join(BASE_DIR, "temp2")
+
+# Ensure the directory exists
+os.makedirs(TEMP_FEEDBACK_DIR , exist_ok=True)
+
 TEMP_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "temp3")
 os.makedirs(TEMP_FOLDER, exist_ok=True)
 
