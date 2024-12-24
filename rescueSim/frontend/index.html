@@ -30,16 +30,31 @@
             text-align: center;
             background-color: transparent; /* Make it transparent */
         }
+
+        /* Icon Container */
+        .icon-container {
+            position: fixed; /* Fix position relative to viewport */
+            bottom: 0px; /* Distance from the bottom of the viewport */
+            left: 0px; /* Distance from the left side */
+            z-index: 1000; /* Ensures it appears above other content */
+        }
+
+        /* Instructions Icon */
+        .instructions-icon {
+            width: 50px; /* Icon size */
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .instructions-icon:hover {
+            transform: scale(1.2); /* Slight zoom effect on hover */
+        }
     </style>
 
-<link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
-
-<!-- PNG Favicon for Modern Browsers -->
-<link rel="icon" type="image/png" href="/frontend/favicon.png">
-
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="/frontend/favicon.png">
-
+    <link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
+    <link rel="icon" type="image/png" href="/frontend/favicon.png">
+    <link rel="apple-touch-icon" href="/frontend/favicon.png">
 </head>
 <body>
     <!-- Particle Background -->
@@ -59,6 +74,8 @@
             <button id="speech-to-speech" class="toggle-button">Audio<br>Simulation</button>
         </div>
     </div>
+
+
 
     <!-- Include Particles.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
@@ -82,25 +99,33 @@
 
     <!-- Link to app.js -->
     <script type="module" src="app.js"></script>
+
+<body>
+    <!-- Icon for instructions -->
+    <div class="icon-container">
+        <a href="instructions.html" target="_blank">
+            <img src="/frontend/favicon.png" alt="Instructions Icon" class="instructions-icon">
+        </a>
+    </div>
 </body>
 
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
             <h4>About</h4>
-            <p>A simulation project powered by modern technologies.</p>
+            <p>An efficient 911 Dispatch training tool <br> for simulation and feedback.</p>
         </div>
         <div class="footer-section">
             <h4>Links</h4>
             <ul>
-                <li><a href="https://github.com/your-repo" target="_blank">GitHub</a></li>
-                <li><a href="/contributors">Contributors</a></li>
-                <li><a href="/privacy-policy">Privacy Policy</a></li>
+                <li><a href="https://github.com/ShriteMamidala/911-Dispatch" target="_blank">GitHub</a></li>
+                <li><a href="/frontend/contributors.html">Contributors</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h4>Contact</h4>
-            <p>Email: <a href="mailto:example@example.com">example@example.com</a></p>
+            <h4>Contacts</h4>
+            <p>Email: <a href="mailto:shritejmami@gmail.com">shritejmami@gmail.com</a></p>
+            <p>Email: <a href="mailto:vandanayyalapu@gmail.com">vandanayyalapu@gmail.com</a></p>
         </div>
     </div>
 </footer>

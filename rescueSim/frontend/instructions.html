@@ -15,42 +15,82 @@
             color: #8CD6FF; /* Neon blue text */
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Push content higher on the screen */
             align-items: center;
             height: 100vh; /* Cover full viewport height */
         }
 
         /* Title Styling */
         .instructions-title {
-            font-size: 4rem; /* Larger title size */
+            font-size: 3rem; /* Adjust title size */
             color: #8CD6FF; /* Neon blue color */
-            margin-top: 40px; /* Push title higher on the screen */
-            margin-bottom: 40px; /* Spacing below the title */
-            text-align: center;
+            margin-top: 20px; /* Reduce spacing above title */
+            margin-bottom: 20px; /* Reduce spacing below title */
+            text-align: center; /* Center align */
         }
 
         /* Centered Box Styling */
         .instructions-box {
-            width: 90%; /* Wider box */
-            max-width: 1000px; /* Increased maximum width */
-            height: 70%; /* Taller box */
+            width: 90%; /* Maintain responsive width */
+            max-width: 800px; /* Restrict maximum width */
+            height: 60%; /* Adjust height for better fit */
             background-color: #0F1A2D; /* Darker background for the box */
             border: 2px solid #1C75BC; /* Blue border matching the theme */
             border-radius: 10px; /* Rounded corners */
             box-shadow: 0 0 15px rgba(140, 214, 255, 0.5); /* Stronger glow effect */
             display: flex;
-            justify-content: center;
-            align-items: center;
+            flex-direction: column; /* Stack content vertically */
+            align-items: flex-start; /* Align text to the left */
+            padding: 20px; /* Adjust padding for better spacing */
+            overflow-y: auto; /* Enable scrolling for longer text */
+            text-align: left; /* Align text to the left */
+            line-height: 1.4; /* Increase line height for readability */
+            font-size: 1.2rem; /* Increased font size */
+        }
+
+        /* Paragraph and List Styling */
+        .instructions-box p {
+            margin: 10px 0; /* Add spacing between paragraphs */
+        }
+
+        .instructions-box ul {
+            padding-left: 20px; /* Indent bullet points */
+            margin: 10px 0;
+        }
+
+        .instructions-box li {
+            margin-bottom: 10px; /* Add space between list items */
+        }
+
+        a {
+            color: #8CD6FF; /* Neon blue for links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <!-- Page Title -->
-    <h1 class="instructions-title">Instructions</h1>
+    <h1 class="instructions-title">Welcome to RescueSim</h1>
 
     <!-- Centered Box -->
     <div class="instructions-box">
-        <!-- Empty box with no text -->
+        <p>
+            This tool trains you to handle 911 emergency scenarios. Follow these steps to get started:
+        </p>
+        <ul>
+            <li> Choose a mode: "Text Simulation" for text-based scenarios or "Audio Simulation" for voice interactions.</li>
+            <li>Ask clear questions to gather details like location, emergency type, and risks.</li>
+            <li>Type responses in text mode or record them in audio mode.</li>
+            <p>--------------------------------------------------------------------------<p>
+            <li>Alternatively, upload an audio or text file using the "Attach File" option to receive feedback.</li>
+            <li>After completing a session, review your performance in the "Feedback" section.</li>
+        </ul>
+        <p>
+            Stay calm, ask concise questions, and prioritize caller safety. For help, visit our <a href="https://github.com/ShriteMamidala/911-Dispatch" target="_blank">GitHub</a> or contact us at shritejmami@gmail.com or vandanayyalapu@gmail.com.
+        </p>
     </div>
 </body>
 </html>
