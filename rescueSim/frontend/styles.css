@@ -429,3 +429,61 @@ body, html {
 }
 
 
+/* Footer Styling */
+.footer {
+    background-color: #001F3F; /* Dark blue background */
+    color: white; /* Text color */
+    padding: 20px 0; /* Spacing around the footer */
+    text-align: center; /* Center-aligns text by default */
+    font-family: 'Orbitron', sans-serif; /* Matches your design */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures responsiveness */
+    justify-content: space-around; /* Evenly distributes sections */
+    max-width: 1200px; /* Limits width for better readability */
+    margin: 0 auto; /* Centers content */
+}
+
+.footer-section {
+    flex: 1 1 200px; /* Each section gets equal space, minimum 200px */
+    margin: 10px;
+}
+
+.footer-section h4 {
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.footer-section ul {
+    list-style: none; /* Removes bullet points */
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 5px 0;
+}
+
+.footer-section ul li a {
+    color: #00eaff; /* Cyan link color */
+    text-decoration: none; /* Removes underline */
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #007bff; /* Changes color on hover */
+}
+
+.footer-section a {
+    color: white; /* Default link color */
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline; /* Adds underline on hover */
+}
