@@ -5,22 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RescueSim</title>
     <link rel="stylesheet" href="styles.css">
-</head>
+    <style>
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
 
-<head>
-    <title>Your Website Title</title>
-    <!-- Default Favicon -->
-    <link rel="icon" type="image/x-icon" href="/frontend/favicon.ico">
-    
-    <!-- PNG Favicon for Modern Browsers -->
-    <link rel="icon" type="image/png" href="/frontend/favicon.png">
-    
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" href="/frontend/favicon.png">
+        /* Selection Screen */
+        .selection-screen {
+            position: relative;
+            z-index: 1; /* Ensures content is above particles */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #FFFFFF;
+            text-align: center;
+            background-color: transparent; /* Make it transparent */
+        }
+    </style>
 </head>
-
 <body>
-    <!-- Unified Selection Screen -->
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Existing Content -->
     <div class="selection-screen">
         <h1>
             <span class="welcome">Welcome to</span> <span class="rescue">Rescue</span>Sim
@@ -35,6 +51,27 @@
         </div>
     </div>
 
+    <!-- Include Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: "#8CD6FF" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3 },
+                size: { value: 3 },
+                move: {
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    out_mode: "out",
+                },
+            },
+        });
+    </script>
+
+    <!-- Link to app.js -->
     <script type="module" src="app.js"></script>
 </body>
 </html>

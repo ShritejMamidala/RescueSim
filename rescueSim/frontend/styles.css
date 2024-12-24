@@ -5,21 +5,33 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Orbitron', sans-serif;
-    background-color: #0A0F24; /* Dark cyber blue */
-    color: #8CD6FF; /* Lighter blue */
+    background-color:rgba(10, 15, 36, 0.6);
+    color: #8CD6FF; /* Lighter blue text */
     height: 100%;
+}
+
+#particles-js {
+    position: fixed; /* Sticks to the viewport */
+    top: 0;
+    left: 0;
+    width: 100%; /* Fullscreen width */
+    height: 100%; /* Fullscreen height */
+    z-index: -1; /* Sends it behind the content */
+    pointer-events: none; /* Ensures it doesn't block interaction */
 }
 
 /* Selection Screen */
 .selection-screen {
+    position: relative; /* Ensures it layers above the particles */
+    z-index: 1; /* Places it above the particles */
+    color: #FFFFFF; /* Keeps text readable */
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    background-color: #131B33; /* Darker blue */
-    color: #8CD6FF; /* Neon blue */
-    gap: 30px; /* Increased spacing */
+    height: 100vh; /* Fullscreen height */
+    background-color: transparent; /* Removes the solid blue background */
 }
 
 .selection-screen h1 {
@@ -40,12 +52,23 @@ body, html {
     font-weight: bold;
 }
 
-/* Button Groups */
+/* Centering the Button Group */
 .button-group {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px; /* Spacing between buttons */
-    justify-content: center;
+    flex-direction: row; /* Keep buttons in a row */
+    gap: 20px; /* Space between buttons */
+    justify-content: center; /* Horizontally center buttons */
+    align-items: center; /* Align buttons vertically */
+    margin: 20px 0; /* Add spacing above and below the group */
+}
+
+/* Centering the Container */
+.center-container {
+    display: flex;
+    flex-direction: column; /* Stack multiple button groups vertically */
+    align-items: center; /* Horizontally center all button groups */
+    justify-content: center; /* Vertically center all button groups */
+    height: 100vh; /* Full viewport height */
 }
 
 /* Buttons */
