@@ -15,6 +15,16 @@ document.addEventListener("DOMContentLoaded", () => {
     let audioChunks = [];
     let isRecording = false; // Tracks recording state
 
+    const startFeedbackButton = document.getElementById("start-feedback");
+
+    // Navigate to Feedback Page
+    if (startFeedbackButton) {
+        startFeedbackButton.addEventListener("click", () => {
+            window.location.href = "feedback.html"; // Redirect to feedback.html
+        });
+    }
+
+
     function appendMessage(role, message) {
         const newMessage = document.createElement("p"); // Create a new paragraph for each message
         newMessage.textContent = `${role}: ${message}`;

@@ -38,7 +38,6 @@ def format_conversation_log(conversation_log):
             if i < len(dispatcher_responses):
                 formatted_log.append(f"Dispatcher: {dispatcher_responses[i]}")
         log = "\n".join(formatted_log)
-        print(f"Formatted Log:\n{log}")  # Debug log formatting
         return log
     except Exception as e:
         print(f"Error in formatting conversation log: {e}")

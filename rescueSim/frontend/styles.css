@@ -118,8 +118,9 @@ body, html {
     font-size: 1.2rem;
     padding: 20px;
     border-radius: 10px;
-    resize: none; /* Disable manual resizing */
-    pointer-events: none; /* Makes it non-editable */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrolling */
+    pointer-events: auto;
 }
 
 /* Button Container */
@@ -271,22 +272,6 @@ body, html {
 }
 
 
-.main-textbox {
-    width: 95%;
-    height: 100%; /* Occupies 80% of the main area height */
-    background-color: #0F1A2D;
-    border: 1px solid #1C75BC;
-    color: #FFFFFF;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.2rem;
-    padding: 20px;
-    border-radius: 10px;
-    overflow-y: hidden; /* Hides the scroll bar */
-    display: flex;
-    flex-direction: column; /* Ensures messages stack vertically */
-    gap: 10px; /* Adds spacing between messages */
-}
-
 /* User Input Container */
 .input-container {
     width: 95%;
@@ -340,4 +325,28 @@ body, html {
 .feedback-button:hover {
     background-color: #255FA3; /* Slightly darker blue on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+/* Custom scrollbar for modern browsers */
+.main-textbox::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+.main-textbox::-webkit-scrollbar-track {
+    background: #0F1A2D; /* Background of the track */
+    border-radius: 5px;
+}
+
+.main-textbox::-webkit-scrollbar-thumb {
+    background: #1C75BC; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners for the thumb */
+}
+
+.main-textbox::-webkit-scrollbar-thumb:hover {
+    background: #00FFFF; /* Color of the thumb when hovered */
+}
+
+.main-textbox {
+    resize: none; /* Disables resizing */
 }

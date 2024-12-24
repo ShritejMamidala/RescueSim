@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');    
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0A0F24; /* Dark cyber blue */
+            color: #8CD6FF; /* Neon blue */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .page-header {
+            background-color: #0F1A2D; /* Darker blue for header */
+            color: #8CD6FF; /* Neon blue text */
+            text-align: center;
+            padding: 30px 0; /* Increase padding for larger size */
+            box-shadow: none; /* Remove shadow */
+            outline:none;     
+        }
+
+        .page-header h1 {
+            font-size: 3rem; /* Larger font size */
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            position: relative; /* Allows positioning of the custom underline */
+        }
+
+        .page-header h1::after {
+            content: ''; /* Creates the underline */
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -10px; /* Lowers the underline */
+            height: 3px; /* Thickness of the underline */
+            background-color: #FF4D4D; /* Custom red color for the underline */
+            margin: 0 auto; /* Centers the underline */
+            width: 35%; /* Length of the underline relative to the text */
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #1C75BC;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background-color: #255FA3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 95%;
+            max-width: 2400px;
+            gap: 50px;
+            height: 900px;
+ 
+        }
+
+        .box {
+            flex: 1;
+            background-color: #131B33;
+            border: none; /* No border */
+            box-shadow: none; /* No shadow */
+            padding: 20px;
+            color: #FFFFFF;
+            height: calc(90vh - 20%); /* 80% of the viewport height minus 20% */
+        }
+
+        .box h2 {
+            color: #8CD6FF;
+            margin-bottom: 15px;
+            text-align: center; /* Center horizontally */
+            font-size: 1.8rem; /* Make the subheader larger */
+            font-weight: bold; /* Add emphasis to the subheader */
+        }
+
+        textarea {
+            width: 98%;
+            height: calc(100% - 100px);
+            background-color: #0F1A2D;
+            border: 1px solid #1C75BC;
+            border-radius: 8px;
+            color: #FFFFFF;
+            padding: 10px;
+            resize: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            pointer-events: none;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        .attach-button-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        label {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.5rem;
+            background-color: #1C75BC;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        label:hover {
+            background-color: #255FA3;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-button">Back</a>
+
+    <header class="page-header">
+        <h1>Feedback</h1>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h2>Conversation</h2>
+            <textarea readonly placeholder="Conversation content will appear here..."></textarea>
+        </div>
+        <div class="box">
+            <h2>Feedback</h2>
+            <textarea readonly placeholder="Feedback content will appear here..."></textarea>
+        </div>
+    </div>
+    <div class="attach-button-container">
+        <label for="audio-upload">Attach Audio File</label>
+        <input type="file" id="audio-upload" accept="audio/*">
+
+        <label for="text-upload">Attach Text File</label>
+        <input type="file" id="text-upload" accept=".txt">
+    </div>
+</body>
+</html>
