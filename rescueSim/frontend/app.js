@@ -280,4 +280,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
+    const audioUploadInput = document.getElementById("audio-upload");
+    const conversationTextarea = document.querySelector(".container .box:nth-child(1) textarea");
+    const feedbackTextarea = document.querySelector(".container .box:nth-child(2) textarea");
+    
+    if (audioUploadInput) {
+        audioUploadInput.addEventListener("change", async (event) => {
+            const file = event.target.files[0];
+            console.log("File selected:", file); // Debug log
+    
+            if (!file) {
+                alert("Please select a valid audio file.");
+                return;
+            }
+    
+            // Validate file type
+            const validTypes = ["audio/mpeg", "audio/wav", "audio/flac", "audio/ogg", "audio/mp4"];
+            if (!validTypes.includes(file.type)) {
+                alert("Unsupported file format. Please upload a valid file.");
+                return;
+            }
+    
+            console.log("File type validated:", file.type); // Debug log
+    
+            try {
+                const { conversation_log, feedback } = await API.processAudio(file);
+                console.log("Response received:", { conversation_log, feedback }); // Debug log
+    
+                conversationTextarea.value = conversation_log || "No conversation log generated.";
+                feedbackTextarea.value = feedback || "No feedback generated.";
+            } catch (error) {
+                console.error("Error processing audio file:", error);
+            }
+        });
+    }
+
 });
