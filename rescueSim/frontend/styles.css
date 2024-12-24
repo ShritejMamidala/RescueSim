@@ -326,6 +326,7 @@ body, html {
     background-color: #255FA3; /* Slightly darker blue on hover */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
+<<<<<<< HEAD
 
 
 /* Custom scrollbar for modern browsers */
@@ -350,3 +351,111 @@ body, html {
 .main-textbox {
     resize: none; /* Disables resizing */
 }
+=======
+/* Feedback Box Styling */
+.feedback-box {
+    width: 80%; /* Adjust width as needed */
+    height: 60%; /* Adjust height as needed */
+    margin: 50px auto; /* Center the box */
+    border: 2px solid #1C75BC; /* Blue outline similar to the screenshot */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #0F1A2D; /* Background color matching the page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8CD6FF; /* Text color (optional) */
+    font-size: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(28, 117, 188, 0.5); /* Optional glow effect */
+}
+/* Feedback Box Styling */
+.feedback-box {
+    width: 80%; /* Adjust width as needed */
+    height: 60%; /* Adjust height as needed */
+    margin: 50px auto; /* Center the box */
+    border: 2px solid #1C75BC; /* Blue outline similar to the screenshot */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #0F1A2D; /* Background color matching the page */
+    position: relative; /* Allow positioning of the text inside */
+    box-shadow: 0 0 10px rgba(28, 117, 188, 0.5); /* Optional glow effect */
+}
+
+/* Feedback Title Styling */
+.feedback-title {
+    position: absolute; /* Position relative to the box */
+    top: 10px;
+    left: 10px;
+    color: #8CD6FF; /* Neon blue text */
+    font-size: 1.5rem; /* Adjust font size */
+    font-family: 'Orbitron', sans-serif; /* Match the existing style */
+}
+/* Feedback Box Styling */
+.feedback-box {
+    width: 80%; /* Adjust width as needed */
+    height: 60%; /* Adjust height as needed */
+    margin: 50px auto; /* Center the box */
+    border: 2px solid #1C75BC; /* Blue outline */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #0F1A2D; /* Background color */
+    position: relative; /* Allow positioning of text inside */
+    box-shadow: 0 0 10px rgba(28, 117, 188, 0.5); /* Optional glow effect */
+    padding: 20px; /* Add padding inside the box */
+}
+
+/* Feedback Title Styling */
+.feedback-title {
+    color: #8CD6FF; /* Neon blue text */
+    font-size: 1.5rem; /* Font size for "Overall performance:" */
+    font-family: 'Orbitron', sans-serif; /* Match the existing style */
+    margin-bottom: 10px; /* Add space below the title */
+}
+
+/* Feedback Subtitle Styling */
+.feedback-subtitle {
+    color: #8CD6FF; /* Neon blue text */
+    font-size: 1.3rem; /* Font size for "Feedback:" */
+    font-family: 'Orbitron', sans-serif; /* Match the existing style */
+    margin-top: 10px; /* Add space above the subtitle */
+}
+/* Feedback Box Styling */
+/* Feedback Box Styling */
+.feedback-box {
+    width: 80%; /* Adjust width as needed */
+    height: 60%; /* Adjust height as needed */
+    margin: 50px auto; /* Center the box */
+    border: 2px solid #1C75BC; /* Blue outline */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #0F1A2D; /* Background color */
+    position: relative; /* Allow positioning of text inside */
+    box-shadow: 0 0 10px rgba(28, 117, 188, 0.5); /* Optional glow effect */
+    padding: 20px; /* Add padding inside the box */
+    display: flex;
+    flex-direction: column; /* Ensure content stacks vertically */
+    align-items: flex-start; /* Align content to the left */
+    justify-content: flex-start; /* Align content to the top */
+}
+
+/* Feedback Content Styling */
+.feedback-content {
+    display: flex;
+    flex-direction: column; /* Stack text vertically */
+    row-gap: 100px; /* Add space between "Overall performance" and "Feedback" */
+    width: 100%; /* Ensure it spans the width of the box */
+}
+
+/* Feedback Title Styling */
+.feedback-title {
+    color: #8CD6FF; /* Neon blue text */
+    font-size: 1.5rem; /* Font size for "Overall performance:" */
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 0; /* Prevent default margin below */
+}
+
+/* Feedback Subtitle Styling */
+.feedback-subtitle {
+    color: #8CD6FF; /* Neon blue text */
+    font-size: 1.5rem; /* Same font size as "Overall performance:" */
+    font-family: 'Orbitron', sans-serif;
+    margin-top: 0; /* Prevent default margin above */
+}
+>>>>>>> 6e0911ac83fc23e69494bf8d4d703d19b32ddc53
