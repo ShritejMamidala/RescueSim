@@ -1,24 +1,22 @@
 {
-    "rewrites": [
-      {
-        "source": "/api/(.*)",
-        "destination": "/rescueSim/backend/$1"
-      }
-    ],
-    "builds": [
-      {
-        "src": "rescueSim/backend/main.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "rescueSim/frontend/**",
-        "use": "@vercel/static"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/rescueSim/frontend/$1"
-      }
-    ]
-  }
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/rescueSim/backend/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/rescueSim/frontend/$1"
+    }
+  ],
+  "builds": [
+    {
+      "src": "rescueSim/backend/main.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "rescueSim/frontend/**",
+      "use": "@vercel/static"
+    }
+  ]
+}
