@@ -74,7 +74,6 @@
             max-width: 2400px;
             gap: 50px;
             height: 900px;
- 
         }
 
         .box {
@@ -105,12 +104,31 @@
             padding: 10px;
             resize: none;
             font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            pointer-events: none;
+            font-size: 1.5rem;
+            pointer-events: auto; /* Ensure the user can interact */
+            overflow: auto; /* Enable scrolling */
         }
 
         textarea:focus {
             outline: none;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+            background: #0F1A2D;
+            border-radius: 5px;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+            background: #1C75BC;
+            border-radius: 5px;
+        }
+
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #00FFFF;
         }
 
         .attach-button-container {
@@ -156,19 +174,19 @@
     <div class="container">
         <div class="box">
             <h2>Conversation</h2>
-            <textarea readonly placeholder="Conversation content will appear here..."></textarea>
+            <textarea id="conversation-log" readonly placeholder="Conversation content will appear here..."></textarea>
         </div>
         <div class="box">
             <h2>Feedback</h2>
-            <textarea readonly placeholder="Feedback content will appear here..."></textarea>
+            <textarea id="detailed-feedback" readonly placeholder="Feedback content will appear here..."></textarea>
         </div>
     </div>
     <div class="attach-button-container">
         <label for="audio-upload">Attach Audio File</label>
         <input type="file" id="audio-upload" accept="audio/*">
-
         <label for="text-upload">Attach Text File</label>
         <input type="file" id="text-upload" accept=".txt">
     </div>
+    <script src="app.js" type="module" defer></script>
 </body>
 </html>

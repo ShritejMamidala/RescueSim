@@ -121,7 +121,39 @@ const API = {
             console.error("Error fetching feedback:", error);
             throw error;
         }
-    }
+    },
+
+        /**
+     * Process an uploaded audio file by sending it to the backend.
+     * @param {File} audioFile - The audio file to upload.
+     * @returns {Promise<{conversation_log: string, feedback: string}>} - The conversation log and feedback.
+     */
+        async processAudio(audioFile) {
+            try {
+                const formData = new FormData();
+                formData.append("file", audioFile);
+        
+                console.log("Uploading file:", audioFile); // Debug log
+        
+                const response = await fetch("/process-audio", {
+                    method: "POST",
+                    body: formData,
+                });
+        
+                console.log("Response status:", response.status); // Debug log
+        
+                if (!response.ok) {
+                    throw new Error(`API error: ${response.statusText}`);
+                }
+        
+                const data = await response.json();
+                console.log("API response data:", data); // Debug log
+                return data;
+            } catch (error) {
+                console.error("Error in processAudio API call:", error);
+                throw error;
+            }
+        }
 };
 
 export default API;

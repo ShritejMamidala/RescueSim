@@ -8,12 +8,14 @@ from start_simulation import get_random_scenario
 from reset_simulation import reset_conversation_log
 from listen_to_caller import process_listen_to_caller
 import shutil
-from fastapi import FastAPI, HTTPException, Body
+from fastapi import FastAPI, HTTPException, Body    
 from fastapi.responses import JSONResponse
 from text_to_text import get_victim_response
 from pydantic import BaseModel
-from simulation_feedback import analyze_performance
+from feedback import process_audio_feedback
 import json
+from simulation_feedback import analyze_performance
+
 
 class DispatcherRequest(BaseModel):
     dispatcher_message: str
@@ -25,6 +27,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of th
 FRONTEND_DIR = os.path.join(BASE_DIR, "../frontend")  # Adjust the path relative to the script
 
 app.mount("/frontend", StaticFiles(directory=FRONTEND_DIR), name="frontend")
+
+TEMP_FEEDBACK_DIR = "./temp_feedback"
 
 conversation_log = {"victim_responses": [], "dispatcher_responses": []}
 
@@ -201,3 +205,58 @@ async def generate_feedback():
     except Exception as e:
         print(f"Error in generate_feedback: {e}")
         raise HTTPException(status_code=500, detail="Failed to generate feedback")
+    
+
+@app.post("/process-audio")
+async def process_audio(file: UploadFile = File(...)):
+    """
+    API endpoint to process an uploaded audio file.
+    - Accepts: audio file (.mp3, .wav, .flac, .ogg, .m4a).
+    - Returns: formatted conversation log and feedback.
+    """
+    # Ensure the temp_feedback directory exists
+    try:
+        os.makedirs(TEMP_FEEDBACK_DIR, exist_ok=True)
+        print(f"Directory {TEMP_FEEDBACK_DIR} is ready.")  # Debug log
+    except OSError as e:
+        print(f"Error creating directory {TEMP_FEEDBACK_DIR}: {e}")  # Debug log
+        raise HTTPException(status_code=500, detail=f"Failed to create temporary storage directory: {str(e)}")
+
+    # Save the file to the temp_feedback folder
+    temp_file_path = os.path.join(TEMP_FEEDBACK_DIR, file.filename)
+    try:
+        with open(temp_file_path, "wb") as temp_file:
+            content = await file.read()
+            temp_file.write(content)
+            print(f"File saved: {temp_file_path}, size: {len(content)} bytes")  # Debug log
+    except Exception as e:
+        print(f"Error saving file: {e}")  # Debug log
+        raise HTTPException(status_code=500, detail=f"Failed to save file: {str(e)}")
+
+    # Process the file and generate feedback
+    try:
+        conversation_log, feedback = process_audio_feedback(temp_file_path)
+        print(f"Processing completed for file: {temp_file_path}")  # Debug log
+    except ValueError as ve:
+        print(f"Validation error for file {temp_file_path}: {ve}")  # Debug log
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        print(f"Error processing file {temp_file_path}: {e}")  # Debug log
+        raise HTTPException(status_code=500, detail=f"Error processing file: {str(e)}")
+    finally:
+        if os.path.exists(temp_file_path):
+            try:
+                os.remove(temp_file_path)
+                print(f"Temporary file deleted: {temp_file_path}")  # Debug log
+            except OSError as e:
+                print(f"Failed to delete temporary file {temp_file_path}: {e}")  # Debug log
+
+    # Return the formatted conversation log and feedback
+    return JSONResponse(
+        content={
+            "conversation_log": conversation_log or "No conversation log available.",
+            "feedback": feedback or "No feedback available."
+        },
+        status_code=200
+    )
+
