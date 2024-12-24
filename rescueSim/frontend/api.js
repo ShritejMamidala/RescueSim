@@ -104,6 +104,23 @@ const API = {
             console.error("Error in sendDispatcherMessage API call:", error);
             throw error;
         }
+    },
+    /**
+     * Fetch performance feedback from the backend.
+     * @returns {Promise<{rating: number, review: string, feedback: string}>} - Feedback data from the backend.
+     */
+    async fetchFeedback() {
+        try {
+            const response = await fetch("/generate-feedback", { method: "POST" });
+            if (!response.ok) {
+                throw new Error(`API error: ${response.statusText}`);
+            }
+            const data = await response.json();
+            return data; // This contains { rating, review, feedback }
+        } catch (error) {
+            console.error("Error fetching feedback:", error);
+            throw error;
+        }
     }
 };
 

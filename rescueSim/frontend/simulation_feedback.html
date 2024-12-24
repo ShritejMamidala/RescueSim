@@ -7,7 +7,7 @@
 </head>
 <body>
     <!-- Back button to return to the start screen -->
-    <a href="index.html" class="back-button">Back</a>
+    <a href="index.html" id="simulation-feedback-back-button" class="back-button">Back</a>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
@@ -64,6 +64,8 @@
         }
 
         .single-line-input {
+            font-size: 1.5rem; /* Increase text size */
+            font-weight: bold; /* Optional: Make text bold */
             width: 100%;
             padding: 10px;
             font-size: 1rem;
@@ -84,7 +86,7 @@
             min-height: 200px; /* Ensures it doesn't shrink too much on small screens */
             max-height: 500px; /* Prevents it from growing too large on larger screens */
             padding: 10px;
-            font-size: 1rem;
+            font-size: 1.5rem;
             border: 1px solid #1C75BC;
             border-radius: 5px;
             background-color: #1C2A3C;
@@ -104,12 +106,12 @@
     <div class="main-container">
         <div class="feedback-box">
             <label for="overall-performance" class="feedback-title">Overall Performance:</label>
-            <input type="text" id="overall-performance" class="single-line-input" placeholder="Overall performance..." readonly>
+            <input type="text" id="overall-performance" class="single-line-input" placeholder="Loading... Please wait patiently while your preformance is getting reviewed. Thank you." readonly>
 
             <label for="detailed-feedback" class="feedback-subtitle">Feedback:</label>
-            <textarea id="detailed-feedback" class="multi-line-textbox" placeholder="Feedback..." readonly></textarea>
+            <textarea id="detailed-feedback" class="multi-line-textbox" placeholder="Loading... Please wait patiently whhile your preformance is getting reviewed. Thank you." readonly></textarea>
         </div>
     </div>
-
+    <script type="module" src="app.js"></script>
 </body>
 </html>

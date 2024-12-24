@@ -12,6 +12,8 @@ from fastapi import FastAPI, HTTPException, Body
 from fastapi.responses import JSONResponse
 from text_to_text import get_victim_response
 from pydantic import BaseModel
+from simulation_feedback import analyze_performance
+import json
 
 class DispatcherRequest(BaseModel):
     dispatcher_message: str
@@ -167,3 +169,35 @@ async def text_to_text_endpoint(request: DispatcherRequest):
     except Exception as e:
         print(f"Error in text-to-text endpoint: {e}")  # Detailed error log
         raise HTTPException(status_code=500, detail="An error occurred while processing the request.")
+    
+@app.post("/generate-feedback")
+async def generate_feedback():
+    print("DEBUG: /generate-feedback endpoint hit")  # Log for debugging
+
+    try:
+        # Format the conversation log
+        formatted_log = format_conversation_log(conversation_log)
+
+        # Get feedback from the GPT model
+        feedback_str = analyze_performance(formatted_log)
+
+        # Log the raw feedback string
+        print("Raw Feedback String:", feedback_str)
+
+        # Parse the feedback string into JSON
+        feedback = json.loads(feedback_str)
+
+        # Log the parsed feedback object
+        print("Parsed Feedback Object:", feedback)
+
+        # Return the feedback along with the formatted conversation log
+        return {
+            "feedback": feedback,
+            "conversation_log": formatted_log
+        }
+    except json.JSONDecodeError as e:
+        print(f"Error decoding feedback JSON: {e}")
+        raise HTTPException(status_code=500, detail="Invalid JSON format in feedback response")
+    except Exception as e:
+        print(f"Error in generate_feedback: {e}")
+        raise HTTPException(status_code=500, detail="Failed to generate feedback")

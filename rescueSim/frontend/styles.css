@@ -487,3 +487,22 @@ body, html {
 .footer-section a:hover {
     text-decoration: underline; /* Adds underline on hover */
 }
+
+
+#detailed-feedback::-webkit-scrollbar {
+    width: 10px;
+}
+
+#detailed-feedback::-webkit-scrollbar-track {
+    background: #0F1A2D;
+    border-radius: 5px;
+}
+
+#detailed-feedback::-webkit-scrollbar-thumb {
+    background: #1C75BC;
+    border-radius: 5px;
+}
+
+#detailed-feedback::-webkit-scrollbar-thumb:hover {
+    background: #00FFFF;
+}

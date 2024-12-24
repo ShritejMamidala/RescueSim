@@ -24,11 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     function appendMessage(role, message) {
-        const newMessage = document.createElement("p"); // Create a new paragraph for each message
-        newMessage.textContent = `${role}: ${message}`;
-        mainTextbox.appendChild(newMessage); // Add the message to the conversation box
+        const newMessage = `${role}: ${message}`;
+        const conversationLog = localStorage.getItem("conversationLog") || ""; // Get existing log or empty string
+        const updatedLog = `${conversationLog}${newMessage}\n`; // Append new message with newline
+        localStorage.setItem("conversationLog", updatedLog); // Save updated log back to localStorage
+    
+        // Update the UI
+        const newMessageElement = document.createElement("p");
+        newMessageElement.textContent = newMessage;
+        mainTextbox.appendChild(newMessageElement);
         mainTextbox.scrollTop = mainTextbox.scrollHeight; // Auto-scroll to the latest message
     }
 
@@ -56,7 +61,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-
 
     // End Simulation Button
     if (endSimulationButton) {
@@ -109,6 +113,38 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 mainTextbox.textContent = prompt; // For Text-to-Text Mode
             }
+        }
+    }
+
+    // Check if current page is simulation_feedback.html and call the feedback function
+    if (window.location.pathname.endsWith("simulation_feedback.html")) {
+        handleFeedbackPage(); // Call the async function for feedback
+    }
+
+    // Define the async function to handle feedback logic
+    async function handleFeedbackPage() {
+        console.log("Simulation Feedback page detected. Fetching feedback...");
+    
+        try {
+            // Fetch feedback and conversation log from the backend
+            const response = await API.fetchFeedback();
+    
+            // Destructure response data
+            const { feedback, conversation_log: conversationLog } = response;
+    
+            // Log feedback and conversation log for debugging
+            console.log("Feedback from backend:", feedback);
+            console.log("Conversation Log from backend:", conversationLog);
+    
+            // Combine conversation log and feedback
+            const combinedFeedback = `--- Conversation Log ---\n${conversationLog}\n\n--- Feedback ---\n${feedback.feedback}`;
+    
+            // Populate the feedback fields
+            document.getElementById("overall-performance").value = `${feedback.rating}/10 - ${feedback.review}`;
+            document.getElementById("detailed-feedback").value = combinedFeedback;
+    
+        } catch (error) {
+            console.error("Error fetching feedback:", error);
         }
     }
 
@@ -220,4 +256,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (mainTextbox) {
         populateMainTextbox();
     }
+
+
+    const backButton = document.getElementById("simulation-feedback-back-button");
+
+    if (backButton) {
+        backButton.addEventListener("click", async (event) => {
+            event.preventDefault(); // Prevent default navigation behavior
+            try {
+                console.log("Back button clicked. Clearing conversation log...");
+
+                // Call API to reset simulation and clear log
+                await API.resetSimulation();
+
+                // Clear localStorage for conversation log
+                localStorage.removeItem("conversationLog");
+
+                // Redirect to the index page
+                window.location.href = "index.html";
+            } catch (error) {
+                console.error("Failed to clear conversation log:", error);
+            }
+        });
+    }
+
 });
