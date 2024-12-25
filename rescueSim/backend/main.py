@@ -16,12 +16,23 @@ from feedback import process_audio_feedback
 import json
 from simulation_feedback import analyze_performance
 from feedback_test import analyze_text_file
+from fastapi.middleware.cors import CORSMiddleware
 
 
 class DispatcherRequest(BaseModel):
     dispatcher_message: str
 
 app = FastAPI()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://rescuesim.vercel.app"],  # Update to your frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Mount the frontend directory to serve static files
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
