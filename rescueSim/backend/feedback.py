@@ -9,7 +9,6 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 # Initialize Google Cloud Speech-to-Text client
-client = speech.SpeechClient()
 
 def detect_audio_format(file_path):
     """
@@ -67,6 +66,7 @@ def convert_to_wav(input_path, output_path):
         raise RuntimeError(f"Failed to convert file to WAV: {e}")
 
 def transcribe_audio(file_path):
+    client = speech.SpeechClient()
     """
     Transcribes the audio file using Google Cloud Speech-to-Text.
 

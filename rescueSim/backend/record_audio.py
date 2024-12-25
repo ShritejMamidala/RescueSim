@@ -8,7 +8,6 @@ TEMP_AUDIO_PATH = os.path.join(BASE_DIR, "temp", "recording.webm")
 # Explicitly set credentials using the GOOGLE_CLOUD_STT environment variable
 
 # Google Cloud STT Client Initialization
-client = speech.SpeechClient()
 
 async def save_audio_file(file):
     """Save the uploaded audio file temporarily."""
@@ -23,6 +22,7 @@ async def save_audio_file(file):
         raise
 
 def transcribe_audio(audio_path):
+    client = speech.SpeechClient()
     """Transcribe the audio file using Google Cloud STT."""
     try:
         with open(audio_path, "rb") as audio_file:
