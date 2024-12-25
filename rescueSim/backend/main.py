@@ -53,8 +53,8 @@ TEMP_FEEDBACK_DIR  = os.path.join(BASE_DIR, "temp2")
 # Ensure the directory exists
 os.makedirs(TEMP_FEEDBACK_DIR , exist_ok=True)
 
-TEMP_FOLDER = os.path.join(os.path.dirname(os.path.abspath(__file__)), "temp3")
-os.makedirs(TEMP_FOLDER, exist_ok=True)
+TEMP_FOLDER3 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "temp3")
+os.makedirs(TEMP_FOLDER3, exist_ok=True)
 
 conversation_log = {"victim_responses": [], "dispatcher_responses": []}
 
@@ -306,7 +306,7 @@ async def process_text_file(file: UploadFile = File(...)):
     """
     try:
         # Save the uploaded file temporarily
-        file_path = os.path.join(TEMP_FOLDER, file.filename)
+        file_path = os.path.join(TEMP_FOLDER3, file.filename)
         with open(file_path, "wb") as f:
             content = await file.read()
             f.write(content)
@@ -319,7 +319,7 @@ async def process_text_file(file: UploadFile = File(...)):
         formatted_log, feedback = analyze_text_file(text)
 
         # Optionally clear the temp folder
-        clear_temp_folder(TEMP_FOLDER)
+        clear_temp_folder(TEMP_FOLDER3)
 
         return JSONResponse(content={"conversation_log": formatted_log, "feedback": feedback})
     except Exception as e:

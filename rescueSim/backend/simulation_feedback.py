@@ -14,7 +14,7 @@ def analyze_performance(conversation_log):
     try:
         prompt = (
             "You are an expert evaluator for 911 dispatcher training. "
-            "Rate the dispatcher's performance on a scale of 1-10 based on the following conversation log. "
+            "Rate the dispatcher's performance on a scale of 1-10 based on the following conversation log, a 10/10 should be nearly if not impossible "
             "Provide a one-sentence review and detailed constructive feedback. Use a professional and harsh tone.\n\n"
             "If no conversation log was provided. Say that"
             "This is an audio conversation translated into text, do not worry about grammatical errors"
