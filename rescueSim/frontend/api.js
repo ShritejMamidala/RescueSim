@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://rescuesim.vercel.app/api"; // Replace with your deployed backend's API URL
+
 const API = {
     /**
      * Start the simulation by calling the backend API.
@@ -5,7 +7,7 @@ const API = {
      */
     async startSimulation() {
         try {
-            const response = await fetch("/start-simulation", { method: "POST" });
+            const response = await fetch(`${API_BASE_URL}/start-simulation`, { method: "POST" });
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
@@ -23,7 +25,7 @@ const API = {
      */
     async resetSimulation() {
         try {
-            const response = await fetch("/reset-simulation", { method: "POST" });
+            const response = await fetch(`${API_BASE_URL}/reset-simulation`, { method: "POST" });
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
@@ -45,7 +47,7 @@ const API = {
             const formData = new FormData();
             formData.append("file", audioBlob, "recording.webm");
 
-            const response = await fetch("/record-audio", {
+            const response = await fetch(`${API_BASE_URL}/record-audio`, {
                 method: "POST",
                 body: formData,
             });
@@ -68,7 +70,7 @@ const API = {
      */
     async listenToCaller() {
         try {
-            const response = await fetch("/listen-to-caller", { method: "POST" });
+            const response = await fetch(`${API_BASE_URL}/listen-to-caller`, { method: "POST" });
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
@@ -86,18 +88,18 @@ const API = {
      */
     async sendDispatcherMessage(dispatcherMessage) {
         try {
-            const response = await fetch("/text-to-text", {
+            const response = await fetch(`${API_BASE_URL}/text-to-text`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ dispatcher_message: dispatcherMessage }), // Match Pydantic model
             });
-    
+
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
-    
+
             const data = await response.json();
             return data.victim_response; // Victim's response from backend
         } catch (error) {
@@ -105,13 +107,14 @@ const API = {
             throw error;
         }
     },
+
     /**
      * Fetch performance feedback from the backend.
      * @returns {Promise<{rating: number, review: string, feedback: string}>} - Feedback data from the backend.
      */
     async fetchFeedback() {
         try {
-            const response = await fetch("/generate-feedback", { method: "POST" });
+            const response = await fetch(`${API_BASE_URL}/generate-feedback`, { method: "POST" });
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
@@ -123,7 +126,7 @@ const API = {
         }
     },
 
-        /**
+    /**
      * Process an uploaded audio file by sending it to the backend.
      * @param {File} audioFile - The audio file to upload.
      * @returns {Promise<{conversation_log: string, feedback: string}>} - The conversation log and feedback.
@@ -132,20 +135,20 @@ const API = {
         try {
             const formData = new FormData();
             formData.append("file", audioFile);
-    
+
             console.log("Uploading file:", audioFile); // Debug log
-    
-            const response = await fetch("/process-audio", {
+
+            const response = await fetch(`${API_BASE_URL}/process-audio`, {
                 method: "POST",
                 body: formData,
             });
-    
+
             console.log("Response status:", response.status); // Debug log
-    
+
             if (!response.ok) {
                 throw new Error(`API error: ${response.statusText}`);
             }
-    
+
             const data = await response.json();
             console.log("API response data:", data); // Debug log
             return data;
@@ -154,7 +157,6 @@ const API = {
             throw error;
         }
     },
-
 
     /**
      * Upload a text file to the backend for processing.
@@ -166,7 +168,7 @@ const API = {
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch("/process-text-file", {
+            const response = await fetch(`${API_BASE_URL}/process-text-file`, {
                 method: "POST",
                 body: formData,
             });
