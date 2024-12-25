@@ -7,11 +7,6 @@ import openai
 # Set up API keys
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-google_cloud_stt_key_path = os.getenv("GOOGLE_CLOUD_STT")
-if google_cloud_stt_key_path:
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = google_cloud_stt_key_path
-else:
-    raise EnvironmentError("GOOGLE_CLOUD_STT environment variable is not set.")
 
 # Initialize Google Cloud Speech-to-Text client
 client = speech.SpeechClient()

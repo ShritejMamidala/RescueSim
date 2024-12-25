@@ -6,7 +6,6 @@ from google.cloud import speech
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
 TEMP_AUDIO_PATH = os.path.join(BASE_DIR, "temp", "recording.webm")
 # Explicitly set credentials using the GOOGLE_CLOUD_STT environment variable
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_CLOUD_STT")
 
 # Google Cloud STT Client Initialization
 client = speech.SpeechClient()

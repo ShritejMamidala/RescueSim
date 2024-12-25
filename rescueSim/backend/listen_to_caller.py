@@ -5,11 +5,6 @@ import uuid
 
 # Set up OpenAI and Google Cloud credentials
 openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure this environment variable is set
-google_cred_path = os.getenv("GOOGLE_CLOUD_TTS")
-if google_cred_path:
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = google_cred_path
-else:
-    raise ValueError("The GOOGLE_CLOUD_TTS environment variable is not set.")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
 TEMP_AUDIO_DIR = os.path.join(BASE_DIR, "temp2")
