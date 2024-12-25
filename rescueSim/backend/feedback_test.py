@@ -10,8 +10,7 @@ else:
 
 def format_conversation_log(text):
     """
-    Send the raw conversation log to GPT for formatting.
-    The response should be a clean, organized version of the log.
+    Sending the raw conversation log to GPT for formatting.
     """
     try:
         response = openai.ChatCompletion.create(
@@ -20,7 +19,7 @@ def format_conversation_log(text):
                 {
                     "role": "system",
                     "content": (
-                        "You are a formatting assistant. The user has provided a raw log of a conversation. "
+                        "You are a formatting assistant. The user has provided a raw log of a conversation between a 911 caller and dispatcher. "
                         "Your job is to clean, organize, and format it for clarity. "
                         "Keep the content logically structured and retain all the information."
                     ),
@@ -49,8 +48,12 @@ def analyze_text_file(text):
             messages=[
                 {
                     "role": "system",
-                    "content": "You are a feedback generator for a 911 dispatch simulation.",
-                },
+                    "content": (
+                        "You are a feedback analyzer for 911 dispatch scenarios. "
+                        "Analyze the provided conversation log and provide performance feedback."
+                        "Be harsh but provide constructive criticism."
+                        "Go briefly through the postivies but dig in on the negatives so the dispatcher can learn"
+                    ),                },
                 {"role": "user", "content": text},
             ],
         )

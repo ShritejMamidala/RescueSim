@@ -143,6 +143,8 @@ def analyze_performance(conversation_log):
                     "content": (
                         "You are a feedback analyzer for 911 dispatch scenarios. "
                         "Analyze the provided conversation log and provide performance feedback."
+                        "Be harsh but provide constructive criticism."
+                        "Go briefly through the postivies but dig in on the negatives so the dispatcher can learn"
                     ),
                 },
                 {"role": "user", "content": conversation_log},
