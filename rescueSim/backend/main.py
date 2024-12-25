@@ -113,14 +113,9 @@ async def read_root():
 
 @app.post("/api/start-simulation")
 async def start_simulation():
-    # Fetch a random scenario using start_simulation.py
     prompt = get_random_scenario()
-    formatted_prompt = f"Scenario: {prompt}"  # Add 'Scenario:' prefix
-    
-    # Update the global conversation log
+    formatted_prompt = f"Scenario: {prompt}"  # Add 'Scenario:' prefix here
     conversation_log["victim_responses"].append(formatted_prompt)
-    
-    # Return the formatted prompt
     return JSONResponse(content={"prompt": formatted_prompt}, media_type="application/json; charset=utf-8")
 
 @app.post("/api/reset-simulation")

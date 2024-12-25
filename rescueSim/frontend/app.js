@@ -85,8 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function startSimulationAndNavigate(mode) {
         try {
             const prompt = await API.startSimulation(); // Fetch scenario prompt from API
-            const formattedPrompt = `Scenario: ${prompt}`; // Add 'Scenario:' prefix
-            localStorage.setItem("simulationPrompt", formattedPrompt); // Save formatted prompt in localStorage
+            localStorage.setItem("simulationPrompt", prompt); // Save the prompt directly
             if (mode === "text") {
                 window.location.href = "text-to-text.html";
             } else if (mode === "speech") {
