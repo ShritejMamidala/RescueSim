@@ -42,16 +42,6 @@ elif os.getenv("GOOGLE_CLOUD_STT"):
 else:
     raise EnvironmentError("No valid Google Cloud credentials found for Speech-to-Text")
 
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["https://rescuesim.vercel.app"],  # Update to your frontend URL
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-
 # Mount the frontend directory to serve static files
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
 FRONTEND_DIR = os.path.join(BASE_DIR, "../frontend")  # Adjust the path relative to the script
@@ -125,12 +115,13 @@ async def read_root():
 async def start_simulation():
     # Fetch a random scenario using start_simulation.py
     prompt = get_random_scenario()
+    formatted_prompt = f"Scenario: {prompt}"  # Add 'Scenario:' prefix
     
     # Update the global conversation log
-    conversation_log["victim_responses"].append(prompt)
+    conversation_log["victim_responses"].append(formatted_prompt)
     
-    # Return the selected prompt with proper encoding
-    return JSONResponse(content={"prompt": prompt}, media_type="application/json; charset=utf-8")
+    # Return the formatted prompt
+    return JSONResponse(content={"prompt": formatted_prompt}, media_type="application/json; charset=utf-8")
 
 @app.post("/api/reset-simulation")
 async def reset_simulation():
