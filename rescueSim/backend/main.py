@@ -25,6 +25,24 @@ class DispatcherRequest(BaseModel):
 
 app = FastAPI()
 
+if os.path.exists("/etc/secrets/GOOGLE_CLOUD_TTS.json"):
+    # Render environment: Use secret files
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/etc/secrets/GOOGLE_CLOUD_TTS.json"
+elif os.getenv("GOOGLE_CLOUD_TTS"):
+    # Local environment: Use the path from GOOGLE_CLOUD_TTS
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GOOGLE_CLOUD_TTS")
+else:
+    raise EnvironmentError("No valid Google Cloud credentials found for Text-to-Speech")
+
+# Optional: Set up a separate path for Speech-to-Text (STT) if needed
+if os.path.exists("/etc/secrets/GOOGLE_CLOUD_STT.json"):
+    os.environ["GOOGLE_CLOUD_STT"] = "/etc/secrets/GOOGLE_CLOUD_STT.json"
+elif os.getenv("GOOGLE_CLOUD_STT"):
+    os.environ["GOOGLE_CLOUD_STT"] = os.getenv("GOOGLE_CLOUD_STT")
+else:
+    raise EnvironmentError("No valid Google Cloud credentials found for Speech-to-Text")
+
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://rescuesim.vercel.app"],  # Update to your frontend URL
