@@ -2,8 +2,11 @@ import openai
 import os
 
 # Set the OpenAI API key from the environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+if not openai.api_key:
+    print("OPENAI_API_KEY is not set.")
+else:
+    print("OPENAI_API_KEY is set.")
 
 def format_conversation_log(text):
     """

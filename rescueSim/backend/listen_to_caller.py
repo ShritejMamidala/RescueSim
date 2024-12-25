@@ -4,7 +4,11 @@ from google.cloud import texttospeech
 import uuid
 
 # Set up OpenAI and Google Cloud credentials
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Ensure this environment variable is set
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+if not openai.api_key:
+    print("OPENAI_API_KEY is not set.")
+else:
+    print("OPENAI_API_KEY is set.")
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # Get the directory of the current script
 TEMP_AUDIO_DIR = os.path.join(BASE_DIR, "temp2")

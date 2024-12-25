@@ -5,8 +5,11 @@ from google.cloud import speech
 import openai
 
 # Set up API keys
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+if not openai.api_key:
+    print("OPENAI_API_KEY is not set.")
+else:
+    print("OPENAI_API_KEY is set.")
 
 # Initialize Google Cloud Speech-to-Text client
 

@@ -1,8 +1,11 @@
 import openai
 import os
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
+openai.api_key = os.environ.get("OPENAI_API_KEY")
+if not openai.api_key:
+    print("OPENAI_API_KEY is not set.")
+else:
+    print("OPENAI_API_KEY is set.")
 
 def get_victim_response(formatted_log: str) -> str:
     """
