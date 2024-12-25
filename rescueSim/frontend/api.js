@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://rescuesim.vercel.app/api"; // Replace with your deployed backend's API URL
+const API_BASE_URL = "/api"; // Relative path for API routes handled by Vercel rewrites
 
 const API = {
     /**
