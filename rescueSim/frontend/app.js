@@ -231,8 +231,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Fetch GPT response and audio URL from the backend
                 const { text, audio_url } = await API.listenToCaller();
         
-                // Add /api prefix to the audio URL
-                const fullAudioUrl = `${window.location.origin}/api${audio_url}`;
+                // Use the audio_url directly without adding /api again
+                const fullAudioUrl = `${window.location.origin}${audio_url}`;
                 console.log("Full Audio URL:", fullAudioUrl);
         
                 if (mainTextbox) {

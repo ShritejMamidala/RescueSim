@@ -164,7 +164,7 @@ async def listen_to_caller():
         conversation_log["victim_responses"].append(gpt_response)
 
         # Return the GPT response text and audio URL to the frontend
-        return {"text": gpt_response, "audio_url": f"/audio/{os.path.basename(audio_path)}"}
+        return {"text": gpt_response, "audio_url": f"/api/audio/{os.path.basename(audio_path)}"}
     except Exception as e:
         print(f"Error in listen-to-caller: {e}")
         return JSONResponse(content={"error": "Failed to process Listen to Caller request."}, status_code=500)
