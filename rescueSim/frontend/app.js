@@ -224,28 +224,36 @@ document.addEventListener("DOMContentLoaded", () => {
     // Speech-to-Speech Button Logic: Listen to Caller
     if (listenToCallerButton) {
         listenToCallerButton.addEventListener("click", async () => {
-            // Hide "Listen to Caller" and show "Record Audio"
             listenToCallerButton.classList.add("hidden");
             recordAudioButton.classList.remove("hidden");
-
+        
             try {
-                // Fetch GPT response and audio from the backend
+                // Fetch GPT response and audio URL from the backend
                 const { text, audio_url } = await API.listenToCaller();
-
-                // Append the GPT response to the main textbox
+        
+                // Add /api prefix to the audio URL
+                const fullAudioUrl = `${window.location.origin}/api${audio_url}`;
+                console.log("Full Audio URL:", fullAudioUrl);
+        
                 if (mainTextbox) {
-                    mainTextbox.value += `\n\nVictim: ${text}`; // Add victim response with spacing
-                    mainTextbox.scrollTop = mainTextbox.scrollHeight; // Auto-scroll to latest entry
+                    mainTextbox.value += `\n\nVictim: ${text}`;
+                    mainTextbox.scrollTop = mainTextbox.scrollHeight;
                 }
-
+        
                 // Play the audio file
-                const audio = new Audio(audio_url);
-                audio.play();
+                const audio = new Audio(fullAudioUrl);
+        
+                try {
+                    await audio.play();
+                    console.log("Audio playback started successfully");
+                } catch (playbackError) {
+                    console.error("Audio playback failed:", playbackError);
+                    alert("The victim's audio response could not be played. Please try again.");
+                }
             } catch (error) {
                 console.error("Error handling 'Listen to Caller':", error);
                 alert("Failed to retrieve the victim's response. Please try again.");
-
-                // Revert button visibility on error
+            } finally {
                 listenToCallerButton.classList.remove("hidden");
                 recordAudioButton.classList.add("hidden");
             }
