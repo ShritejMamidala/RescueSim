@@ -152,20 +152,18 @@ document.addEventListener("DOMContentLoaded", () => {
     async function startRecording() {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-            const mimeType = MediaRecorder.isTypeSupported("audio/webm")
-                ? "audio/webm"
-                : ""; // Fallback to default
-
+            const mimeType = MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : ""; // Fallback to default
+    
             mediaRecorder = new MediaRecorder(stream, { mimeType });
-
+    
             audioChunks = []; // Reset audio chunks
-
+    
             mediaRecorder.ondataavailable = (event) => {
                 if (event.data.size > 0) {
                     audioChunks.push(event.data);
                 }
             };
-
+    
             mediaRecorder.onstop = async () => {
                 const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
                 console.log("Recorded Blob Type:", audioBlob.type); // Should log "audio/webm"
@@ -174,39 +172,39 @@ document.addEventListener("DOMContentLoaded", () => {
                     displayTranscription(transcription); // Display transcription in the textbox
                 } catch (error) {
                     console.error("Error uploading audio:", error);
+                    alert("Failed to upload the recorded audio. Please try again.");
                 }
-
+    
                 // Toggle buttons after recording ends
+                recordAudioButton.textContent = "Record Audio"; // Reset button text
                 recordAudioButton.classList.add("hidden");
                 listenToCallerButton.classList.remove("hidden");
             };
-
+    
             mediaRecorder.start();
             console.log("Recording started...");
         } catch (error) {
             console.error("Error starting recording:", error);
+            alert("Failed to start audio recording. Please check your microphone settings.");
         }
     }
-
-    // Stop Recording Function
+    
     function stopRecording() {
         if (mediaRecorder && mediaRecorder.state === "recording") {
             mediaRecorder.stop();
             console.log("Recording stopped...");
         }
     }
-
-    // Display Transcription on UI
+    
     function displayTranscription(transcription) {
         if (mainTextbox) {
-            // Add a newline only if there is already content in the textbox
             const separator = mainTextbox.value.trim() !== "" ? "\n\n" : "";
             mainTextbox.value += `${separator}Dispatcher: ${transcription}`;
             mainTextbox.scrollTop = mainTextbox.scrollHeight; // Scroll to the latest entry
         }
         console.log("Transcription added to main textbox:", transcription);
     }
-
+    
     // Record Audio Button Logic
     if (recordAudioButton) {
         recordAudioButton.addEventListener("click", () => {
@@ -217,43 +215,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 stopRecording();
                 recordAudioButton.textContent = "Record Audio";
             }
-            isRecording = !isRecording;
+            isRecording = !isRecording; // Toggle recording state
         });
     }
-
+    
     // Speech-to-Speech Button Logic: Listen to Caller
     if (listenToCallerButton) {
         listenToCallerButton.addEventListener("click", async () => {
+            console.log("Processing and playing victim's response...");
+            
+            // Hide "Listen to Caller" and show "Record Audio"
             listenToCallerButton.classList.add("hidden");
             recordAudioButton.classList.remove("hidden");
-        
+    
             try {
                 // Fetch GPT response and audio URL from the backend
                 const { text, audio_url } = await API.listenToCaller();
-        
-                // Use the audio_url directly without adding /api again
                 const fullAudioUrl = `${window.location.origin}${audio_url}`;
                 console.log("Full Audio URL:", fullAudioUrl);
-        
+    
+                // Append GPT response to the main textbox
                 if (mainTextbox) {
                     mainTextbox.value += `\n\nVictim: ${text}`;
                     mainTextbox.scrollTop = mainTextbox.scrollHeight;
                 }
-        
+    
                 // Play the audio file
                 const audio = new Audio(fullAudioUrl);
-        
+    
+                audio.onended = () => {
+                    console.log("Audio playback finished. Ready for new recording.");
+                    // Keep "Record Audio" visible
+                    recordAudioButton.classList.remove("hidden");
+                    listenToCallerButton.classList.add("hidden");
+                };
+    
                 try {
                     await audio.play();
                     console.log("Audio playback started successfully");
                 } catch (playbackError) {
                     console.error("Audio playback failed:", playbackError);
                     alert("The victim's audio response could not be played. Please try again.");
+                    // Reset buttons on playback error
+                    listenToCallerButton.classList.remove("hidden");
+                    recordAudioButton.classList.add("hidden");
                 }
             } catch (error) {
                 console.error("Error handling 'Listen to Caller':", error);
                 alert("Failed to retrieve the victim's response. Please try again.");
-            } finally {
+                // Reset buttons on API error
                 listenToCallerButton.classList.remove("hidden");
                 recordAudioButton.classList.add("hidden");
             }
