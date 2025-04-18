@@ -7,7 +7,7 @@
 
 ## 🌐 Live Demo
 
-🎯 [Try it now](https://rescuesim.onrender.com/frontend/index.html)
+ [Try it now, using this Link!](https://rescuesim.onrender.com/frontend/index.html)
 
 ---
 
