@@ -1,4 +1,4 @@
-# 🚑 RescueSim: AI-Powered 911 Dispatcher Training Simulator
+#  RescueSim: AI-Powered 911 Dispatcher Training Simulator
 
 > A modern training platform for aspiring emergency dispatchers, featuring realistic, AI-driven simulations in both text and speech modes.
 
@@ -19,10 +19,10 @@
 
 ## What is RescueSim?
 
-- **RescueSim** is a training simulator for 911 dispatchers, designed to mimic real emergency call scenarios and provide detailed, AI-generated feedback. Trainees can interact with simulated callers using either:
+**RescueSim** is a training simulator for 911 dispatchers, designed to mimic real emergency call scenarios and provide detailed, AI-generated feedback. Trainees can interact with simulated callers using either:
 
-- ** Text-to-Text Mode**: Communicate with the system through a chat-style interface.
-- ** Speech-to-Speech Mode**: Engage in realistic voice-based conversations using speech recognition and synthesis.
+** Text-to-Text Mode**: Communicate with the system through a chat-style interface.
+** Speech-to-Speech Mode**: Engage in realistic voice-based conversations using speech recognition and synthesis.
 
 Each session is evaluated by an AI-powered backend that provides structured feedback on performance, decision-making, and communication clarity.
 
