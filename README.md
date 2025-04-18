@@ -17,24 +17,14 @@
 
 ---
 
-## 🧠 What is RescueSim?
+## What is RescueSim?
 
 **RescueSim** is a training simulator for 911 dispatchers, designed to mimic real emergency call scenarios and provide detailed, AI-generated feedback. Trainees can interact with simulated callers using either:
 
-- **📝 Text-to-Text Mode**: Communicate with the system through a chat-style interface.
-- **🗣️ Speech-to-Speech Mode**: Engage in realistic voice-based conversations using speech recognition and synthesis.
+- ** Text-to-Text Mode**: Communicate with the system through a chat-style interface.
+- ** Speech-to-Speech Mode**: Engage in realistic voice-based conversations using speech recognition and synthesis.
 
 Each session is evaluated by an AI-powered backend that provides structured feedback on performance, decision-making, and communication clarity.
-
----
-
-## 🔍 Key Features
-
-- 🧬 **AI-Powered Simulation** – Realistic emergency call scenarios for skill-building.
-- 💬 **Dual Interaction Modes** – Choose between text or voice-based communication.
-- 📊 **Performance Feedback** – Get actionable insights on how to improve.
-- 🗂 **File Upload Support** – Upload your own simulations or logs for review.
-- 🖥️ **User-Friendly Interface** – Built with modern frontend technologies for a clean, intuitive experience.
 
 ---
 
@@ -42,13 +32,13 @@ Each session is evaluated by an AI-powered backend that provides structured feed
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Python, Google Cloud (Speech-to-Text, Text-to-Speech)
-- **AI**: Custom LLM integration for evaluation and scenario generation
+- **AI**: LLM integration for evaluation
 - **Voice Communication**: WebRTC, Google Cloud Speech APIs
 - **Deployment**: Render
 
 ---
 
-## 🚀 How It Works
+## How It Works
 
 1. Choose a mode (Text or Speech)
 2. Respond to a simulated emergency caller
@@ -56,25 +46,3 @@ Each session is evaluated by an AI-powered backend that provides structured feed
 4. Receive personalized performance feedback
 5. Download transcripts or audio for review
 
----
-
-## 📈 Future Enhancements
-
-- Multi-language support
-- Emergency scenario editor
-- Real-time team-based simulations
-- Integration with headset hardware
-
----
-
-## 👨‍💻 Author
-
-**Shritej Mamidala**  
-High school developer passionate about AI, emergency response, and tech for good.  
-[GitHub](https://github.com/YOURUSERNAME) • [LinkedIn](https://linkedin.com/in/YOURPROFILE)
-
----
-
-## 📜 License
-
-This project is licensed under the MIT License.
